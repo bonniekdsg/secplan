@@ -1,0 +1,1839 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SECPLAN - Secretaria de Planejamento Institucional e Inovação</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<link rel="preload" as="image" href="https://static.wixstatic.com/media/c96204_07a1318b59b74bb4963912621a6b08ee~mv2.png"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#8D2B2A",
+                        "background-light": "#F3F4F6",
+                        "background-dark": "#111827",
+                    },
+                    fontFamily: {
+                        display: ["Roboto", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                    },
+                },
+            },
+        };
+    </script>
+<style>
+        /* Scroll suave para ancoragem */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Fallback estático para a hero quando o vídeo não carregar */
+        :root { --hero-overlay-opacity: 0.5; } /* ajuste entre 0.4 e 0.6 */
+        .hero-bg {
+            background-color: #8D2B2A; /* cor base uniforme */
+            background-image: url('../secplan_2025/assets/bg_hero.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: scroll;
+        }
+        /* Hero overlay: transparência reduzida em ~32% vs valor anterior (0.5 → 0.34)
+           - Objetivo: permitir maior visibilidade do background
+           - Responsivo: ligeiro aumento em mobile para preservar contraste
+           - WCAG: manter legibilidade + contraste via ajuste dinâmico (ver script) */
+        :root { --hero-overlay-opacity: 0.34; } /* ajuste entre 0.30 e 0.40 */
+        
+        .hero-overlay {
+            position: absolute; inset: 0;
+            /* Fundo escuro com maior transparência */
+            background-color: rgba(0, 0, 0, var(--hero-overlay-opacity, 0.34));
+            /* Gradiente suavizado (~30% mais transparente que antes: 0.6→0.42, 0.4→0.28) */
+            background-image: linear-gradient(to bottom, rgba(0,0,0,0.42), rgba(0,0,0,0.28));
+            pointer-events: none;
+            opacity: 0;
+            animation: overlayFadeIn 0.3s ease-in-out forwards;
+            z-index: 2;
+        }
+        
+        /* Pequenas telas: eleve ligeiramente a opacidade para manter contraste */
+        @media (max-width: 767px) {
+          :root { --hero-overlay-opacity: 0.38; }
+        }
+        
+        /* Sombra do texto da hero: leve reforço para legibilidade em fundos claros */
+        .hero-text-shadow {
+          text-shadow: 0 2px 6px rgba(0,0,0,0.30), 0 1px 2px rgba(0,0,0,0.65);
+        }
+
+        /* Badge acima do título hero */
+        .hero-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          padding: 6px 14px;
+          background-color: rgba(31, 41, 55, 0.8); /* dark gray com transparência */
+          border: 1px solid rgba(211, 68, 67, 0.5); /* #d34443 com transparência */
+          border-radius: 6px;
+          font-size: 10px;
+          font-weight: 300;
+          letter-spacing: 0.5px;
+          text-transform: uppercase;
+          color: #ffffff;
+          opacity: 0;
+          transform: translateY(30px);
+          animation: heroFadeSlideUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.1s forwards;
+        }
+
+        .hero-badge-icon {
+          font-size: 14px;
+          color: #d34443;
+        }
+
+        .hero-badge-text {
+          font-family: 'Roboto', sans-serif;
+        }
+
+        /* Fonte serif para palavra destacada no título */
+        .hero-title-serif {
+          font-family: 'Playfair Display', serif;
+          font-weight: 700;
+          font-style: italic;
+        }
+
+        /* Word Rotate Effect */
+        .word-rotate-container {
+          display: inline-block;
+          position: relative;
+          overflow: hidden;
+          vertical-align: bottom;
+          min-width: 280px;
+          height: 1.2em;
+          text-align: left;
+          padding-left: 0;
+          padding-right: 0;
+        }
+
+        @media (max-width: 768px) {
+          .word-rotate-container {
+            min-width: 240px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .word-rotate-container {
+            min-width: 200px;
+          }
+        }
+
+        .word-rotate-word {
+          display: inline-block;
+          white-space: nowrap;
+          opacity: 0;
+          transform: translateY(-50px);
+          transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+        }
+
+        .word-rotate-word.active {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        .word-rotate-word.exit {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+
+        .hero-bg video { z-index: 1; }
+        .hero-content { position: relative; z-index: 3; }
+        @keyframes overlayFadeIn { to { opacity: 1; } }
+        @media (min-width: 768px) {
+             .hero-bg { background-attachment: fixed; }
+         }
+        @media (prefers-reduced-motion: reduce) {
+          .hero-overlay { animation: none; opacity: 1; }
+          .hero-bg video { display: none !important; }
+        }
+         /* Hover de título nos cards da seção "Áreas de atuação"
+            - Transição suave de 0.3s (ease-in-out) apenas na cor
+            - Mantém o fundo inalterado e não afeta focus/active
+            - Cursor pointer no hover para indicar interatividade
+            - Comentários para manutenção futura
+         */
+         .area-card .card-title { transition: color 0.3s ease-in-out; }
+         .area-card:hover .card-title { color: #8D2B2A; }
+         .area-card:hover { cursor: pointer; }
+         /* Modo escuro: para preservar contraste >= 4.5:1 em fundo escuro
+            mantemos o título em branco durante o hover.
+            Se desejar aplicar #8D2B2B também no dark, ajuste o fundo do card.
+         */
+         @media (prefers-color-scheme: dark) {
+           .area-card:hover .card-title { color: #FFFFFF; }
+           /* Cards da hero section: usar cor do ícone mesmo no modo escuro */
+           .hero-cards-grid .area-card:hover .card-title,
+           .hero-cards-grid .area-card:hover h3.card-title { 
+             color: #8D2B2A !important; 
+             opacity: 1 !important;
+             visibility: visible !important;
+           }
+         }
+       /* Carrossel: altura máx. 200px responsiva e tipografia ajustada */
+  #promo-carousel .carousel-frame {
+    /* mantém proporção em diferentes telas e limita a 200px */
+    height: clamp(140px, 25vh, 200px);
+    max-height: 200px;
+  }
+  #promo-carousel .carousel-slide .text-center h3 {
+    /* tipografia mais contida para legibilidade na altura reduzida */
+    font-size: clamp(1rem, 2.4vw, 1.25rem);
+    line-height: 1.2;
+  }
+  #promo-carousel .carousel-slide .text-center p {
+    font-size: clamp(0.75rem, 1.8vw, 1rem);
+    line-height: 1.3;
+  }
+  #promo-carousel .material-symbols-outlined {
+    /* garantir boa proporção dos ícones de navegação */
+    font-size: clamp(18px, 2.2vw, 22px);
+    line-height: 1;
+  }
+  /* Tornar slides ocultos não clicáveis para não bloquear setas/indicadores */
+  #promo-carousel .carousel-slide[aria-hidden="true"] { pointer-events: none; }
+
+  /* Hero cards: tamanho fixo padronizado e gap consistente */
+  :root {
+    --hero-card-gap: 16px;
+    --hero-card-size-sm: 140px;
+    --hero-card-size-md: 160px;
+    --hero-card-size-lg: 180px;
+  }
+  .hero-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--hero-card-gap);
+    grid-auto-rows: var(--hero-card-size-sm);
+  }
+  @media (min-width: 768px) {
+    .hero-cards-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-auto-rows: var(--hero-card-size-md);
+      gap: var(--hero-card-gap);
+    }
+  }
+  @media (min-width: 1024px) {
+    .hero-cards-grid { grid-auto-rows: var(--hero-card-size-lg); }
+  }
+  .hero-card {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  /* Aplicar regras de padronização também aos cards existentes (classe .area-card) */
+  .hero-cards-grid .area-card {
+    position: relative;
+    height: 100%;
+    aspect-ratio: auto; /* neutraliza aspect-square */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    /* Efeito de salto: transição suave e aceleração por GPU para consistência */
+    transform: translate3d(0, 0, 0);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.2s ease, border 0.3s ease;
+    will-change: transform;
+    border: 2px solid transparent;
+    overflow: hidden;
+    /* Variáveis CSS para o efeito de borda animada */
+    --stroke-color: #8D2B2A;
+    --radius: 8px;
+    --thickness: 2px;
+    --pos-x: 50%;
+    --pos-y: 50%;
+  }
+  /* Remover subtítulos dos cards na hero sem deixar espaços */
+  .hero-cards-grid .area-card p { display: none !important; }
+  .hero-cards-grid .area-card .material-symbols-outlined { display: block; margin-bottom: 8px; }
+  /* Garantir que o título sempre fique visível e com cor correta */
+  .hero-cards-grid .area-card .card-title,
+  .hero-cards-grid .area-card h3.card-title { 
+    margin: 0 !important; 
+    line-height: 1.2 !important; 
+    color: #1F2937 !important; /* text-gray-900 - sobrescreve Tailwind */
+    transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    opacity: 1 !important; /* Garantir que sempre fique visível */
+    visibility: visible !important;
+  }
+  /* Hover: título muda para cor do ícone */
+  .hero-cards-grid .area-card:hover .card-title,
+  .hero-cards-grid .area-card:hover h3.card-title {
+    color: #8D2B2A !important; /* Mesma cor do ícone (text-primary) */
+    opacity: 1 !important; /* Garantir visibilidade durante hover */
+    visibility: visible !important;
+  }
+  /* Borda animada com gradiente radial que segue o mouse */
+  .hero-cards-grid .area-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius);
+    padding: var(--thickness);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    z-index: 1;
+    
+    /* Gradiente radial suave - centro colorido, pontas transparentes */
+    background: radial-gradient(
+      circle at var(--pos-x, 50%) var(--pos-y, 50%),
+      var(--stroke-color) 0%,
+      rgba(141, 43, 42, 0.8) 15%,
+      rgba(141, 43, 42, 0.3) 35%,
+      transparent 65%
+    );
+    
+    /* Máscara para mostrar apenas o stroke (sem preencher o card) */
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: exclude;
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask-composite: exclude;
+  }
+
+  /* A borda aparece só no hover */
+  .hero-cards-grid .area-card:hover::before {
+    opacity: 1;
+  }
+
+  /* Garantir que o conteúdo fique acima da borda animada */
+  .hero-cards-grid .area-card > * {
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-cards-grid .area-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+    border: 2px solid transparent; /* Remover borda estática, usar apenas a animada */
+  }
+
+  /* Barra decorativa superior acima do header */
+  .barra-superior {
+    background-color: #8D2B2A;
+    height: 15px;
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Menu principal (header): melhorias de hover, foco e performance */
+  header nav a {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    /* Transições suaves de 0.3s para propriedades animadas */
+    transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease, opacity 0.3s ease;
+    /* Performance: transformar no GPU e evitar repaints */
+    transform: translateZ(0);
+    will-change: transform, color;
+    backface-visibility: hidden;
+  }
+  /* Sublinhado animado (aparece gradualmente) */
+  header nav a::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -6px;
+    height: 2px;
+    width: 0;
+    transform: translateX(-50%);
+    background-color: currentColor;
+    opacity: 0;
+    transition: width 0.3s ease, opacity 0.3s ease;
+  }
+  /* Hover: cor, leve sombra e escala de 1.05 */
+  header nav a:hover {
+    color: #8D2B2A; /* garante contraste em fundo claro */
+    transform: scale(1.05);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.20);
+  }
+  header nav a:hover::after {
+    width: 100%;
+    opacity: 1;
+  }
+  /* Focus visível via teclado: mantém efeitos e reforça acessibilidade */
+  header nav a:focus-visible {
+    color: #8D2B2A;
+    transform: scale(1.05);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.20);
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+  }
+  header nav a:focus-visible::after {
+    width: 100%;
+    opacity: 1;
+  }
+  /* Modo escuro: garantir contraste adequado */
+  .dark header nav a:hover,
+  .dark header nav a:focus-visible {
+    color: #FFFFFF;
+    text-shadow: 0 1px 2px rgba(255,255,255,0.25);
+  }
+  /* Mobile/touch: feedback tátil no toque (sem hover) */
+  @media (hover: none) {
+    header nav a:active {
+      transform: scale(1.02);
+      opacity: 0.95;
+    }
+    header nav a::after { bottom: -4px; }
+  }
+  /* Preferência de usuário: reduzir movimento */
+  @media (prefers-reduced-motion: reduce) {
+    header nav a { transition: none; }
+    header nav a:hover,
+    header nav a:focus-visible { transform: none; }
+    header nav a::after { transition: none; }
+  }
+
+  /* ============================================
+     ANIMAÇÕES DE ENTRADA PROFISSIONAIS
+     ============================================ */
+  
+  /* Estado inicial para elementos animados */
+  .fade-slide-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity, transform;
+  }
+
+  .fade-slide-up.animate {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Hero section - textos com delay escalonado */
+  .hero-text-1 {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: heroFadeSlideUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;
+  }
+
+  .hero-text-2 {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: heroFadeSlideUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards;
+  }
+
+  .hero-text-3 {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: heroFadeSlideUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.6s forwards;
+  }
+
+  /* Hero cards - animação escalonada suave e fluida */
+  .hero-card {
+    opacity: 0 !important;
+    transform: translateY(30px) scale(0.9);
+    transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+
+  .hero-card.animate {
+    opacity: 0.9 !important;
+    transform: translateY(0) scale(1);
+  }
+
+  .hero-card.animate:hover {
+    opacity: 1 !important;
+    transform: translateY(-5px) scale(1.02);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  /* Delay escalonado para cards será aplicado via JavaScript para controle preciso */
+  /* Removido transition-delay do CSS para evitar conflitos */
+
+  /* Keyframes para animação hero */
+  @keyframes heroFadeSlideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Seções com animação ao entrar na viewport */
+  .section-animate {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity, transform;
+  }
+
+  .section-animate.animate {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Delay entre seções (0.3s) */
+  .section-delay-1 { transition-delay: 0.1s; }
+  .section-delay-2 { transition-delay: 0.3s; }
+  .section-delay-3 { transition-delay: 0.5s; }
+
+  /* Cards de notícias */
+  .news-card {
+    opacity: 0 !important;
+    transform: translateY(30px);
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity, transform;
+    pointer-events: none;
+  }
+
+  .news-card.animate {
+    opacity: 1 !important;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  /* Otimizações de performance */
+  .fade-slide-up,
+  .hero-card,
+  .section-animate,
+  .news-card {
+    backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Respeitar preferência de movimento reduzido */
+  @media (prefers-reduced-motion: reduce) {
+    .fade-slide-up,
+    .hero-badge,
+    .hero-text-1,
+    .hero-text-2,
+    .hero-text-3,
+    .hero-card,
+    .section-animate,
+    .news-card {
+      animation: none !important;
+      transition: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+    /* Desabilitar efeito de borda animada quando movimento reduzido */
+    .hero-cards-grid .area-card::before {
+      transition: none !important;
+      opacity: 0 !important;
+    }
+  }
+
+  /* Efeito hover de preenchimento para o botão "Saiba mais" */
+  .hero-text-3 {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    background-color: transparent !important; /* Estado inicial: transparente */
+    border: 2px solid #ffffff; /* Stroke branco */
+    color: #ffffff; /* Texto branco */
+    -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    transition: background-color 250ms ease, border-color 250ms ease;
+  }
+
+  .hero-text-3::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    border-radius: 0.5rem;
+    background-color: #991B1B; /* red-800 */
+    z-index: -1;
+    -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    transition: all 250ms ease;
+  }
+
+  .hero-text-3:hover {
+    background-color: #8D2B2A !important; /* primary - fundo no hover */
+    border-color: #8D2B2A; /* Borda muda para primary no hover */
+    color: #ffffff;
+  }
+
+  .hero-text-3:hover::before {
+    width: 100%;
+  }
+
+  /* Remover transform scale no hover para evitar conflito */
+  .hero-text-3:hover {
+    transform: none;
+  }
+
+  /* Efeito hover de preenchimento para o botão "Ver todas as notícias" */
+  .btn-news-view-all {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    background-color: transparent !important; /* Estado inicial: transparente */
+    border: 2px solid #8D2B2A; /* border-primary */
+    color: #8D2B2A; /* text-primary */
+    transition: background-color 250ms ease, border-color 250ms ease, color 250ms ease;
+  }
+
+  .btn-news-view-all::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    border-radius: 0.5rem;
+    background-color: #8D2B2A; /* primary */
+    z-index: -1;
+    transition: all 250ms ease;
+  }
+
+  .btn-news-view-all:hover {
+    background-color: #8D2B2A !important; /* primary - fundo no hover */
+    border-color: #8D2B2A; /* Borda mantém primary no hover */
+    color: #ffffff; /* Texto branco no hover */
+  }
+
+  .btn-news-view-all:hover::before {
+    width: 100%;
+  }
+</style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-200">
+<div class="w-full">
+<div class="barra-superior" aria-hidden="true"></div>
+<header class="bg-white dark:bg-gray-800 sticky top-0 z-50 transition-shadow duration-300">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-24">
+<div class="flex-shrink-0">
+<a class="flex items-center" href="#" aria-label="Início">
+  <img
+    src="assets/logo_mpac_secplan.svg"
+    alt="SECPLAN – Secretaria de Planejamento Institucional e Inovação do MPAC"
+    class="h-12 sm:h-14 md:h-16 w-auto"
+    decoding="async"
+    fetchpriority="high"
+  />
+</a>
+</div>
+<div class="hidden md:flex items-center space-x-8">
+<nav class="flex items-center space-x-6">
+<a class="font-bold text-sm uppercase tracking-wider text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" href="sobre-nos.html">Sobre Nós</a>
+<a class="font-bold text-sm uppercase tracking-wider text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" href="#hero" id="areas-atuacao-link">Áreas de Atuação</a>
+<a class="font-bold text-sm uppercase tracking-wider text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" href="index.html#noticias">Notícias</a>
+<a class="font-bold text-sm uppercase tracking-wider text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" href="#contato">Contato</a>
+</nav>
+</div>
+</div>
+</div>
+<div class="bg-gray-100 dark:bg-gray-700">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
+<div class="relative max-w-lg mx-auto" role="search" aria-label="Pesquisar no site">
+<label for="site-search" class="sr-only">Buscar no site</label>
+<input id="site-search" class="w-full pl-5 pr-12 py-3 border border-gray-300 dark:border-gray-600 rounded-full bg-white dark:bg-gray-800 text-base placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent shadow-sm" placeholder="O que você procura?" type="text"/>
+<button class="absolute inset-y-0 right-0 flex items-center justify-center w-12 h-full text-white bg-primary rounded-r-full hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+<span class="material-symbols-outlined">
+                                search
+                            </span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<main>
+<section id="hero" class="relative hero-bg text-white overflow-hidden min-h-[65vh] md:min-h-[75vh]" role="img" aria-label="Fundo com vídeo ilustrando planejamento estratégico">
+  <!-- Vídeo de background com preload controlado e fallback para imagem -->
+  <video class="absolute inset-0 w-full h-full object-cover hidden md:block" autoplay muted loop playsinline preload="none" poster="../secplan_2025/assets/bg_hero.jpg" aria-hidden="true">
+    <source data-src="https://cdn.midjourney.com/video/4964eb41-cfa4-49e9-8c7b-937f8751ba88/0.mp4" type="video/mp4" />
+    <img src="../secplan_2025/assets/bg_hero.jpg" alt="Plano de fundo da seção hero com imagem ilustrativa" class="w-full h-full object-cover" />
+  </video>
+  <!-- Overlay escuro com gradiente e fade-in -->
+  <div class="hero-overlay" aria-hidden="true"></div>
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative hero-content">
+    <div class="flex flex-col lg:flex-row items-center lg:min-h-[calc(100vh-144px)]">
+      <div class="lg:w-1/2 py-16 lg:py-0 text-center lg:text-left">
+        <div class="hero-badge mb-6 hero-text-1">
+          <span class="material-symbols-outlined hero-badge-icon">rocket_launch</span>
+          <span class="hero-badge-text">Gestão eficiente</span>
+        </div>
+        <h1 class="text-[32px] md:text-[48px] font-semibold text-white leading-tight mb-6 hero-text-shadow hero-text-1">
+          Planejamento Estratégico <br/>que <span class="hero-title-serif word-rotate-container"><span class="word-rotate-word">Transforma!</span></span>
+        </h1>
+        <p class="text-[16px] md:text-[18px] text-white/90 mb-8 max-w-xl mx-auto lg:mx-0 hero-text-shadow hero-text-2">
+          A SECPLAN promove integração, inovação e eficiência para fortalecer a atuação do MPAC e entregar resultados concretos à sociedade.
+        </p>
+        <a class="inline-block text-white font-semibold py-4 px-10 rounded-lg hero-text-3" href="sobre-nos.html">
+          Saiba mais
+        </a>
+      </div>
+      <div class="lg:w-1/2 w-full pb-16 lg:py-16">
+        <div class="hero-cards-grid">
+          <a href="instrumentos-planejamento.html" class="bg-white rounded-[8px] p-4 md:p-6 text-center flex flex-col items-center justify-center aspect-square transition-opacity duration-200 shadow-[0_4px_12px_rgba(0,0,0,0.1)] area-card hero-card">
+            <span class="material-symbols-outlined text-4xl text-primary mb-2">analytics</span>
+            <h3 class="font-semibold text-sm text-gray-900 card-title">Instrumentos de Planejamento</h3>
+            <p class="text-xs text-gray-600 mt-1">Análise e monitoramento de dados para a segurança pública.</p>
+          </a>
+          <a href="relatorio-anual.html" class="bg-white rounded-[8px] p-4 md:p-6 text-center flex flex-col items-center justify-center aspect-square opacity-90 transition-opacity duration-200 shadow-[0_4px_12px_rgba(0,0,0,0.1)] hover:opacity-100 area-card hero-card">
+            <span class="material-symbols-outlined text-4xl text-primary mb-2">description</span>
+            <h3 class="font-semibold text-sm text-gray-900 card-title">Relatório Anual de Atividades</h3>
+            <p class="text-xs text-gray-600 mt-1">Avaliação e acompanhamento de políticas governamentais.</p>
+          </a>
+          <a href="gestao-vista.html" class="bg-white rounded-[8px] p-4 md:p-6 text-center flex flex-col items-center justify-center aspect-square opacity-90 transition-opacity duration-200 shadow-[0_4px_12px_rgba(0,0,0,0.1)] hover:opacity-100 area-card hero-card">
+            <span class="material-symbols-outlined text-4xl text-primary mb-2">insights</span>
+            <h3 class="font-semibold text-sm text-gray-900 card-title">Gestão à Vista</h3>
+            <p class="text-xs text-gray-600 mt-1">Desenvolvimento de planos para o crescimento institucional.</p>
+          </a>
+          <a href="captacao-recursos.html" class="bg-white rounded-[8px] p-4 md:p-6 text-center flex flex-col items-center justify-center aspect-square opacity-90 transition-opacity duration-200 shadow-[0_4px_12px_rgba(0,0,0,0.1)] hover:opacity-100 area-card hero-card">
+            <span class="material-symbols-outlined text-4xl text-primary mb-2">handshake</span>
+            <h3 class="font-semibold text-sm text-gray-900 card-title">Captação de Recursos e Convênios</h3>
+            <p class="text-xs text-gray-600 mt-1">Fomento a novas ideias e gestão de projetos inovadores.</p>
+          </a>
+          <a href="escritorio-processos.html" class="bg-white rounded-[8px] p-4 md:p-6 text-center flex flex-col items-center justify-center aspect-square opacity-90 transition-opacity duration-200 shadow-[0_4px_12px_rgba(0,0,0,0.1)] hover:opacity-100 area-card hero-card">
+            <span class="material-symbols-outlined text-4xl text-primary mb-2">account_tree</span>
+            <h3 class="font-semibold text-sm text-gray-900 card-title">Escritório de Processos</h3>
+            <p class="text-xs text-gray-600 mt-1">Controle e planejamento dos recursos financeiros.</p>
+          </a>
+          <div class="bg-white rounded-[8px] p-4 md:p-6 text-center flex flex-col items-center justify-center aspect-square opacity-90 transition-opacity duration-200 shadow-[0_4px_12px_rgba(0,0,0,0.1)] hover:opacity-100 area-card hero-card">
+            <span class="material-symbols-outlined text-4xl text-primary mb-2">work</span>
+            <h3 class="font-semibold text-sm text-gray-900 card-title">Escritório de Projetos</h3>
+            <p class="text-xs text-gray-600 mt-1">Extração de insights a partir de dados complexos.</p>
+          </div>
+          <a href="https://seringallab.mpac.mp.br/" target="_blank" rel="noopener noreferrer" class="bg-white rounded-[8px] p-4 md:p-6 text-center flex flex-col items-center justify-center aspect-square opacity-90 transition-opacity duration-200 shadow-[0_4px_12px_rgba(0,0,0,0.1)] hover:opacity-100 area-card hero-card">
+            <span class="material-symbols-outlined text-4xl text-primary mb-2">lightbulb</span>
+            <h3 class="font-semibold text-sm text-gray-900 card-title">SeringalLab</h3>
+            <p class="text-xs text-gray-600 mt-1">Otimização de processos e estruturas organizacionais.</p>
+          </a>
+          <a href="publicacoes.html" class="bg-white rounded-[8px] p-4 md:p-6 text-center flex flex-col items-center justify-center aspect-square opacity-90 transition-opacity duration-200 shadow-[0_4px_12px_rgba(0,0,0,0.1)] hover:opacity-100 area-card hero-card">
+            <span class="material-symbols-outlined text-4xl text-primary mb-2">menu_book</span>
+            <h3 class="font-semibold text-sm text-gray-900 card-title">Publicações</h3>
+            <p class="text-xs text-gray-600 mt-1">Acompanhamento contínuo dos objetivos estratégicos.</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="relative hero-bg text-white overflow-hidden min-h-[65vh] md:min-h-[75vh] hidden" role="img" aria-label="Fundo com vídeo ilustrando planejamento estratégico">
+  <video class="absolute inset-0 w-full h-full object-cover" autoplay muted loop playsinline preload="metadata" poster="../secplan_2025/assets/bg_hero.jpg" aria-hidden="true">
+    <source src="https://cdn.midjourney.com/video/709b96f1-c0b3-4fd6-a9ec-050100f9a4bb/1.mp4" type="video/mp4" />
+    <img src="../secplan_2025/assets/bg_hero.jpg" alt="Plano de fundo da seção hero com imagem ilustrativa" class="w-full h-full object-cover" />
+  </video>
+  <div class="hero-overlay" aria-hidden="true"></div>
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-32 md:py-48 text-center relative z-10">
+<h1 class="text-4xl md:text-6xl font-black leading-tight mb-4">
+                        Planejamento Estratégico <br/> que Transforma
+                    </h1>
+<p class="max-w-3xl mx-auto text-lg md:text-xl text-gray-200 mb-8">
+                        A SECPLAN promove integração, inovação e eficiência para fortalecer a atuação do MPAC e entregar resultados concretos à sociedade.
+                    </p>
+<div class="flex justify-center space-x-4">
+<a class="bg-white text-primary font-bold py-3 px-8 rounded cursor-pointer transition-all duration-300 ease-out hover:bg-gray-100 hover:text-primary hover:shadow-lg hover:scale-105 active:scale-95 active:shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary" href="#">
+                            Saiba mais
+                        </a>
+<a class="border-2 border-white text-white font-bold py-3 px-8 rounded cursor-pointer transition-all duration-300 ease-out hover:bg-gray-100 hover:text-primary hover:shadow-lg hover:scale-105 active:scale-95 active:shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary" href="#">
+                            Contato
+                        </a>
+</div>
+</div>
+</section>
+<section id="promo-carousel" class="py-10 sm:py-12 bg-white dark:bg-gray-800 section-animate section-delay-1" aria-label="Banners promocionais">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="relative overflow-hidden rounded-lg shadow-lg">
+      <div class="relative carousel-frame">
+        <!-- Slide 1 -->
+        <div id="promo-slide-0" class="carousel-slide absolute inset-0 opacity-100 transition-opacity duration-700 ease-out" role="group" aria-roledescription="slide" aria-label="Slide 1 de 3" aria-hidden="false" tabindex="0">
+          <a href="https://www.mpac.mp.br/wp-content/uploads/CARTA_DE_SERVICOS_SECPLAN_FINAL01.pdf_compressed.pdf" target="_blank" rel="noopener noreferrer" class="block w-full h-full">
+            <div class="w-full h-full bg-center bg-no-repeat" role="img" aria-label="Banner institucional da SECPLAN com elementos gráficos em vermelho" style="background-image:url('https://static.wixstatic.com/media/c96204_8c404fd045a145faa3355761c981903e~mv2.png'); background-size: cover;"></div>
+          </a>
+        </div>
+        <!-- Slide 2 -->
+        <div id="promo-slide-1" class="carousel-slide absolute inset-0 opacity-0 transition-opacity duration-700 ease-out" role="group" aria-roledescription="slide" aria-label="Slide 2 de 3" aria-hidden="true" tabindex="-1">
+          <a href="https://seringallab.mpac.mp.br/" target="_blank" rel="noopener noreferrer" class="block w-full h-full">
+            <div class="w-full h-full bg-center bg-no-repeat" role="img" aria-label="Banner institucional SECPLAN – Carta de Serviços" style="background-image:url('https://static.wixstatic.com/media/c96204_ff8b6274ac8743ba9db17f711ebf03b1~mv2.jpg'); background-size: cover;"></div>
+          </a>
+        </div>
+        <!-- Slide 3 -->
+        <div id="promo-slide-2" class="carousel-slide absolute inset-0 opacity-0 transition-opacity duration-700 ease-out" role="group" aria-roledescription="slide" aria-label="Slide 3 de 3" aria-hidden="true" tabindex="-1">
+          <a href="https://seringallab.mpac.mp.br/" target="_blank" rel="noopener noreferrer" class="block w-full h-full">
+            <div class="w-full h-full bg-center bg-no-repeat" role="img" aria-label="Banner SeringalLab" style="background-image:url('https://static.wixstatic.com/media/c96204_1047c60bbe604f23b907b65ce0f757c1~mv2.png'); background-size: cover;"></div>
+          </a>
+        </div>
+      </div>
+      <!-- Nav buttons -->
+      <button type="button" class="absolute left-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white focus:outline-none focus:ring-2 focus:ring-white/50 rounded-full p-1.5 z-30 transition-all duration-200 hover:bg-white/10 backdrop-blur-sm" aria-label="Slide anterior" data-carousel-prev>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+        </svg>
+      </button>
+      <button type="button" class="absolute right-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white focus:outline-none focus:ring-2 focus:ring-white/50 rounded-full p-1.5 z-30 transition-all duration-200 hover:bg-white/10 backdrop-blur-sm" aria-label="Próximo slide" data-carousel-next>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </button>
+      <!-- Indicators -->
+      <div class="absolute bottom-3 left-0 right-0 flex items-center justify-center gap-2 z-30" role="tablist" aria-label="Indicadores do carrossel">
+        <button type="button" class="w-2.5 h-2.5 rounded-full bg-primary" aria-label="Ir para slide 1" aria-current="true" aria-selected="true" aria-controls="promo-slide-0" role="tab" data-carousel-dot="0"></button>
+        <button type="button" class="w-2.5 h-2.5 rounded-full bg-white/70 hover:bg-white" aria-label="Ir para slide 2" aria-selected="false" aria-controls="promo-slide-1" role="tab" data-carousel-dot="1"></button>
+        <button type="button" class="w-2.5 h-2.5 rounded-full bg-white/70 hover:bg-white" aria-label="Ir para slide 3" aria-selected="false" aria-controls="promo-slide-2" role="tab" data-carousel-dot="2"></button>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="py-16 sm:py-24 hidden">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12">Áreas de atuação</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+<div class="flex flex-col rounded-lg shadow-lg overflow-hidden bg-white dark:bg-gray-800 transition-all duration-300 ease-in-out hover:shadow-2xl hover:-translate-y-2 area-card">
+<div class="flex-shrink-0 h-48 bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+<span class="material-symbols-outlined text-6xl text-primary">
+                                    analytics
+                                </span>
+</div>
+<div class="flex-1 p-6 flex flex-col justify-between">
+<div>
+<h3 class="text-lg font-bold text-gray-900 dark:text-white card-title">Instrumentos de Planejamento</h3>
+<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Análise e monitoramento de dados para a segurança pública.</p>
+</div>
+</div>
+</div>
+<div class="flex flex-col rounded-lg shadow-lg overflow-hidden bg-white dark:bg-gray-800 transition-all duration-300 ease-in-out hover:shadow-2xl hover:-translate-y-2 area-card">
+<div class="flex-shrink-0 h-48 bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+<span class="material-symbols-outlined text-6xl text-primary">
+                                    description
+                                </span>
+</div>
+<div class="flex-1 p-6 flex flex-col justify-between">
+<div>
+<h3 class="text-lg font-bold text-gray-900 dark:text-white card-title">Relatório Anual de Atividades</h3>
+<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Avaliação e acompanhamento de políticas governamentais.</p>
+</div>
+</div>
+</div>
+<div class="flex flex-col rounded-lg shadow-lg overflow-hidden bg-white dark:bg-gray-800 transition-all duration-300 ease-in-out hover:shadow-2xl hover:-translate-y-2 area-card">
+<div class="flex-shrink-0 h-48 bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+<span class="material-symbols-outlined text-6xl text-primary">
+                                    insights
+                                </span>
+</div>
+<div class="flex-1 p-6 flex flex-col justify-between">
+<div>
+<h3 class="text-lg font-bold text-gray-900 dark:text-white card-title">Gestão à Vista</h3>
+<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Desenvolvimento de planos para o crescimento institucional.</p>
+</div>
+</div>
+</div>
+<div class="flex flex-col rounded-lg shadow-lg overflow-hidden bg-white dark:bg-gray-800 transition-all duration-300 ease-in-out hover:shadow-2xl hover:-translate-y-2 area-card">
+<div class="flex-shrink-0 h-48 bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+<span class="material-symbols-outlined text-6xl text-primary">
+                                    handshake
+                                </span>
+</div>
+<div class="flex-1 p-6 flex flex-col justify-between">
+<div>
+<h3 class="text-lg font-bold text-gray-900 dark:text-white card-title">Captação de Recursos e Gestão de Convênios</h3>
+<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Fomento a novas ideias e gestão de projetos inovadores.</p>
+</div>
+</div>
+</div>
+<a href="escritorio-processos.html" class="flex flex-col rounded-lg shadow-lg overflow-hidden bg-white dark:bg-gray-800 transition-all duration-300 ease-in-out hover:shadow-2xl hover:-translate-y-2 area-card">
+<div class="flex-shrink-0 h-48 bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+<span class="material-symbols-outlined text-6xl text-primary">
+                                    account_tree
+                                </span>
+</div>
+<div class="flex-1 p-6 flex flex-col justify-between">
+<div>
+<h3 class="text-lg font-bold text-gray-900 dark:text-white card-title">Escritório de Processos</h3>
+<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Controle e planejamento dos recursos financeiros.</p>
+</div>
+</div>
+</a>
+<div class="flex flex-col rounded-lg shadow-lg overflow-hidden bg-white dark:bg-gray-800 transition-all duration-300 ease-in-out hover:shadow-2xl hover:-translate-y-2 area-card">
+<div class="flex-shrink-0 h-48 bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+<span class="material-symbols-outlined text-6xl text-primary">
+                                    work
+                                </span>
+</div>
+<div class="flex-1 p-6 flex flex-col justify-between">
+<div>
+<h3 class="text-lg font-bold text-gray-900 dark:text-white card-title">Escritório de Projetos</h3>
+<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Extração de insights a partir de dados complexos.</p>
+</div>
+</div>
+</div>
+<a href="https://seringallab.mpac.mp.br/" target="_blank" rel="noopener noreferrer" class="flex flex-col rounded-lg shadow-lg overflow-hidden bg-white dark:bg-gray-800 transition-all duration-300 ease-in-out hover:shadow-2xl hover:-translate-y-2 area-card">
+<div class="flex-shrink-0 h-48 bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+<span class="material-symbols-outlined text-6xl text-primary">
+                                    lightbulb
+                                </span>
+</div>
+<div class="flex-1 p-6 flex flex-col justify-between">
+<div>
+<h3 class="text-lg font-bold text-gray-900 dark:text-white card-title">SeringalLab</h3>
+<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Otimização de processos e estruturas organizacionais.</p>
+</div>
+</div>
+</a>
+<div class="flex flex-col rounded-lg shadow-lg overflow-hidden bg-white dark:bg-gray-800 transition-all duration-300 ease-in-out hover:shadow-2xl hover:-translate-y-2 area-card">
+<div class="flex-shrink-0 h-48 bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+<span class="material-symbols-outlined text-6xl text-primary">
+                                    menu_book
+                                </span>
+</div>
+<div class="flex-1 p-6 flex flex-col justify-between">
+<div>
+<h3 class="text-lg font-bold text-gray-900 dark:text-white card-title">Publicações</h3>
+<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Acompanhamento contínuo dos objetivos estratégicos.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="noticias" class="py-16 sm:py-24 bg-white dark:bg-gray-800">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center section-animate section-delay-2">
+<h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Notícias</h2>
+<p class="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">Fique por dentro das últimas atualizações sobre inovação, planejamento estratégico e as atividades da SECPLAN.</p>
+<div class="flex justify-center space-x-2 sm:space-x-4 mb-12">
+<button class="bg-primary text-white font-semibold py-2 px-6 rounded-full text-sm sm:text-base shadow-md">Todas</button>
+<button class="bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 font-semibold py-2 px-6 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors text-sm sm:text-base">Projetos</button>
+<button class="bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 font-semibold py-2 px-6 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors text-sm sm:text-base">Inovação</button>
+<button class="bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 font-semibold py-2 px-6 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors text-sm sm:text-base">Eventos</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<a class="group block news-card" href="#">
+<div class="flex flex-col h-full bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden transition-all duration-300 ease-in-out hover:shadow-2xl hover:-translate-y-1">
+<div class="flex-shrink-0">
+  <figure class="w-full">
+    <picture>
+      <source srcset="https://static.wixstatic.com/media/c96204_79d5e9842bbe4ff4904ff0f7f447e834~mv2.png" type="image/webp" />
+      <source srcset="https://static.wixstatic.com/media/c96204_79d5e9842bbe4ff4904ff0f7f447e834~mv2.png" type="image/png" />
+      <img
+        src="https://static.wixstatic.com/media/c96204_79d5e9842bbe4ff4904ff0f7f447e834~mv2.png"
+        alt="Operação de fiscalização integrada liderada pela SECPLAN"
+        class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"
+        loading="lazy"
+        decoding="async"
+        sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw"
+      />
+    </picture>
+    <figcaption class="sr-only">Operação de fiscalização integrada da SECPLAN.</figcaption>
+  </figure>
+</div>
+<div class="flex-1 p-6 flex flex-col justify-between">
+<div>
+<span class="text-sm font-semibold text-primary uppercase tracking-wider">Fiscalização</span>
+<h3 class="text-xl font-bold text-gray-900 dark:text-white mt-2 leading-tight group-hover:text-primary dark:group-hover:text-primary transition-colors">SECPLAN lidera operação de fiscalização integrada</h3>
+<p class="mt-3 text-sm text-gray-600 dark:text-gray-400">A operação visou garantir a conformidade e a segurança em diversos setores comerciais da região.</p>
+</div>
+<div class="mt-4 flex items-center text-sm text-gray-500 dark:text-gray-400">
+<span class="material-symbols-outlined text-base mr-1.5">calendar_today</span>
+<span>21 de Outubro, 2025</span>
+</div>
+</div>
+</div>
+</a>
+<a class="group block news-card" href="#">
+<div class="flex flex-col h-full bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden transition-all duration-300 ease-in-out hover:shadow-2xl hover:-translate-y-1">
+<div class="flex-shrink-0">
+  <figure class="w-full">
+    <picture>
+      <source srcset="https://static.wixstatic.com/media/c96204_6584ee8c65374a608a1b318bb4a81f8e~mv2.png" type="image/webp" />
+      <source srcset="https://static.wixstatic.com/media/c96204_6584ee8c65374a608a1b318bb4a81f8e~mv2.png" type="image/png" />
+      <img
+        src="https://static.wixstatic.com/media/c96204_6584ee8c65374a608a1b318bb4a81f8e~mv2.png"
+        alt="Apresentação de diretrizes para políticas públicas"
+        class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"
+        decoding="async"
+        sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw"
+      />
+    </picture>
+    <figcaption class="sr-only">Novas diretrizes para políticas públicas.</figcaption>
+  </figure>
+</div>
+<div class="flex-1 p-6 flex flex-col justify-between">
+<div>
+<span class="text-sm font-semibold text-primary uppercase tracking-wider">Políticas Públicas</span>
+<h3 class="mt-2 text-xl font-bold text-gray-900 dark:text-white leading-tight group-hover:text-primary dark:group-hover:text-primary transition-colors">Novas diretrizes para políticas públicas são apresentadas</h3>
+<p class="mt-3 text-sm text-gray-600 dark:text-gray-400">Uma análise detalhada das atividades e projetos em andamento.</p>
+</div>
+<div class="mt-4 flex items-center text-sm text-gray-500 dark:text-gray-400">
+<span class="material-symbols-outlined text-base mr-1.5">calendar_today</span>
+<span>15 de Outubro, 2025</span>
+</div>
+</div>
+</div>
+</a>
+<a class="group block news-card" href="#">
+<div class="flex flex-col h-full bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden transition-all duration-300 ease-in-out hover:shadow-2xl hover:-translate-y-1">
+<div class="flex-shrink-0">
+  <figure class="w-full mx-auto">
+    <picture>
+      <source srcset="https://static.wixstatic.com/media/c96204_d29b94b5494645fcbedea1eb7c11ecd3~mv2.png" type="image/webp" />
+      <source srcset="https://static.wixstatic.com/media/c96204_d29b94b5494645fcbedea1eb7c11ecd3~mv2.png" type="image/png" />
+      <img
+        src="https://static.wixstatic.com/media/c96204_d29b94b5494645fcbedea1eb7c11ecd3~mv2.png"
+        alt="Lançamento do Planejamento Estratégico 2024 em evento institucional"
+        class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300 mx-auto"
+        decoding="async"
+        sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw"
+      />
+    </picture>
+    <figcaption class="sr-only">Planejamento Estratégico 2024 é lançado em evento.</figcaption>
+  </figure>
+</div>
+<div class="flex-1 p-6 flex flex-col justify-between">
+<div>
+<span class="text-sm font-semibold text-primary uppercase tracking-wider">Planejamento</span>
+<h4 class="mt-2 text-xl font-bold text-gray-900 dark:text-white leading-tight group-hover:text-primary dark:group-hover:text-primary transition-colors">Planejamento Estratégico 2024 é lançado em evento</h4>
+<p class="mt-3 text-sm text-gray-600 dark:text-gray-400">Conheça as metas e os objetivos para o próximo ciclo de gestão.</p>
+</div>
+<div class="mt-4 flex items-center text-sm text-gray-500 dark:text-gray-400">
+<span class="material-symbols-outlined text-base mr-1.5">calendar_today</span>
+<span>01 de Outubro, 2025</span>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="text-center mt-12">
+<a class="btn-news-view-all border-2 border-primary text-primary font-bold py-3 px-8 rounded" href="#">
+                            Ver todas as notícias
+                        </a>
+</div>
+</div>
+</section>
+
+<!-- Seção de Contato -->
+<section id="contato" class="py-16 sm:py-24 bg-gray-50 dark:bg-gray-900 section-animate section-delay-3">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Entre em Contato</h2>
+      <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Tem dúvidas ou sugestões? Estamos à disposição para ajudar.</p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <!-- Informações de Contato -->
+      <div>
+        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Informações de Contato</h3>
+        <div class="space-y-6">
+          <div class="flex items-start">
+            <div class="flex-shrink-0">
+              <span class="material-symbols-outlined text-primary text-3xl">location_on</span>
+            </div>
+            <div class="ml-4">
+              <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-1">Endereço</h4>
+              <p class="text-gray-600 dark:text-gray-400">Ministério Público do Estado do Acre<br>Secretaria de Planejamento Institucional e Inovação<br>Rio Branco - AC</p>
+            </div>
+          </div>
+
+          <div class="flex items-start">
+            <div class="flex-shrink-0">
+              <span class="material-symbols-outlined text-primary text-3xl">mail</span>
+            </div>
+            <div class="ml-4">
+              <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-1">E-mail</h4>
+              <a href="mailto:secplan@mpac.mp.br" class="text-primary hover:text-primary/80 transition-colors">secplan@mpac.mp.br</a>
+            </div>
+          </div>
+
+          <div class="flex items-start">
+            <div class="flex-shrink-0">
+              <span class="material-symbols-outlined text-primary text-3xl">phone</span>
+            </div>
+            <div class="ml-4">
+              <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-1">Telefone</h4>
+              <a href="tel:+556832123456" class="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors">(68) 3212-2132</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Formulário de Contato -->
+      <div>
+        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Envie sua Mensagem</h3>
+        <form class="space-y-6" id="contact-form">
+          <div>
+            <label for="nome" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Nome Completo</label>
+            <input 
+              type="text" 
+              id="nome" 
+              name="nome" 
+              required
+              class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-gray-800 dark:text-white transition-colors"
+              placeholder="Seu nome completo"
+            />
+          </div>
+
+          <div>
+            <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">E-mail</label>
+            <input 
+              type="email" 
+              id="email" 
+              name="email" 
+              required
+              class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-gray-800 dark:text-white transition-colors"
+              placeholder="seu.email@exemplo.com"
+            />
+          </div>
+
+          <div>
+            <label for="assunto" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Assunto</label>
+            <select 
+              id="assunto" 
+              name="assunto" 
+              required
+              class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-gray-800 dark:text-white transition-colors"
+            >
+              <option value="">Selecione um assunto</option>
+              <option value="projetos">Projetos</option>
+              <option value="inovacao">Inovação</option>
+              <option value="planejamento">Planejamento</option>
+              <option value="duvidas">Dúvidas</option>
+              <option value="outros">Outros</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="mensagem" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Mensagem</label>
+            <textarea 
+              id="mensagem" 
+              name="mensagem" 
+              rows="5" 
+              required
+              class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-gray-800 dark:text-white transition-colors resize-none"
+              placeholder="Escreva sua mensagem aqui..."
+            ></textarea>
+          </div>
+
+          <button 
+            type="submit" 
+            class="w-full bg-primary text-white font-bold py-3 px-8 rounded-lg hover:bg-primary/90 transition-colors shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200"
+          >
+            Enviar Mensagem
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="bg-primary text-white">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+<div class="md:col-span-1">
+<a class="flex flex-col" href="#">
+<span class="text-4xl font-black text-white tracking-wider">SECPLAN</span>
+<span class="text-xs font-medium text-gray-300 tracking-widest">SECRETARIA DE PLANEJAMENTO</span>
+<span class="text-xs font-medium text-gray-300 tracking-widest">INSTITUCIONAL E INOVAÇÃO</span>
+</a>
+<p class="mt-4 text-sm text-gray-300">Promovendo a transformação através do planejamento estratégico e inovação.</p>
+</div>
+<div>
+<h3 class="text-sm font-bold uppercase tracking-wider text-gray-200">Links Rápidos</h3>
+<ul class="mt-4 space-y-2">
+<li><a class="text-sm text-gray-300 hover:text-white transition-colors" href="sobre-nos.html">Sobre Nós</a></li>
+<li><a class="text-sm text-gray-300 hover:text-white transition-colors" href="#">Projetos</a></li>
+<li><a class="text-sm text-gray-300 hover:text-white transition-colors" href="#">Notícias</a></li>
+<li><a class="text-sm text-gray-300 hover:text-white transition-colors" href="#contato">Contato</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-sm font-bold uppercase tracking-wider text-gray-200">Legal</h3>
+<ul class="mt-4 space-y-2">
+<li><a class="text-sm text-gray-300 hover:text-white transition-colors" href="#">Política de Privacidade</a></li>
+<li><a class="text-sm text-gray-300 hover:text-white transition-colors" href="#">Termos de Uso</a></li>
+<li><a class="text-sm text-gray-300 hover:text-white transition-colors" href="#">Acessibilidade</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-sm font-bold uppercase tracking-wider text-gray-200">Siga-nos</h3>
+<div class="flex mt-4 space-x-4">
+<a aria-label="Facebook" class="text-gray-300 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white" href="#" target="_blank" rel="noopener noreferrer">
+<span class="sr-only">Facebook</span>
+<svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path></svg>
+</a>
+<a aria-label="Instagram" class="text-gray-300 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white" href="#" target="_blank" rel="noopener noreferrer">
+<span class="sr-only">Instagram</span>
+<svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.585-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.585-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.011-3.585.069-4.85c.149-3.225 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.85-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98C23.986 15.667 24 15.259 24 12s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98C15.667.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z"></path></svg>
+</a>
+<a aria-label="YouTube" class="text-gray-300 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white" href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">
+<span class="sr-only">YouTube</span>
+<svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.003 3.003 0 0 0-2.118-2.12C19.658 3.5 12 3.5 12 3.5s-7.658 0-9.38.566A3.003 3.003 0 0 0 .502 6.186 31.54 31.54 0 0 0 0 12c0 1.938.169 3.862.502 5.814a3.003 3.003 0 0 0 2.118 2.12C4.842 20.5 12 20.5 12 20.5s7.658 0 9.38-.566a3.003 3.003 0 0 0 2.118-2.12C23.831 15.862 24 13.938 24 12c0-1.938-.169-3.862-.502-5.814zM9.6 15.5v-7l6.4 3.5-6.4 3.5z"/></svg>
+</a>
+</div>
+</div>
+</div>
+<div class="mt-8 border-t border-white/20 pt-8 text-center">
+<p class="text-sm text-gray-300">© 2025 MPAC - SECPLAN - Secretaria de Planejamento Institucional e Inovação. Todos os direitos reservados.</p>
+</div>
+</div>
+</footer>
+</div>
+</body></html>
+<script>
+   // Fallback: se o vídeo falhar, ocultar o elemento para mostrar o background estático
+   (function() {
+     const v = document.querySelector('.hero-bg video');
+     if (v) {
+       v.addEventListener('error', () => v.classList.add('hidden'));
+       v.addEventListener('loadeddata', () => v.classList.remove('hidden'));
+       v.muted = true; // garantir autoplay em mobile
+     }
+
+     // Sombra suave no header quando houver scroll vertical > 0
+     const header = document.querySelector('header');
+     if (!header) return;
+
+     const applyShadow = () => {
+       if (window.scrollY > 0) {
+         header.classList.add('shadow-md'); // elevação discreta cross-browser
+       } else {
+         header.classList.remove('shadow-md');
+       }
+     };
+
+     // Estado inicial e listener com scroll passive para performance
+     applyShadow();
+     window.addEventListener('scroll', applyShadow, { passive: true });
+   })();
+
+   // Hero video: preload inteligente, lazy-loading e métricas de performance
+   (function() {
+     const heroSection = document.querySelector('.hero-bg');
+     const video = document.querySelector('.hero-bg video');
+     const source = video ? video.querySelector('source') : null;
+     if (!heroSection || !video || !source) return;
+
+     // Respeitar preferências de movimento reduzido e viewport móvel
+     const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+     const isMobile = window.matchMedia && window.matchMedia('(max-width: 767px)').matches;
+     if (reduceMotion || isMobile) {
+       // Mantém pôster estático e evita carregar vídeo
+       video.removeAttribute('autoplay');
+       video.preload = 'none';
+       return;
+     }
+
+     // Network-aware preload
+     let desiredPreload = 'metadata';
+     try {
+       const et = navigator.connection && navigator.connection.effectiveType || '4g';
+       desiredPreload = (et === '4g' || et === 'wifi') ? 'auto' : 'metadata';
+     } catch {}
+     video.preload = desiredPreload;
+
+     // MediaCapabilities: verificar eficiência de decodificação H.264
+     const mc = navigator.mediaCapabilities;
+     if (mc && mc.decodingInfo) {
+       const config = {
+         type: 'file',
+         video: {
+           contentType: 'video/mp4; codecs="avc1.640028"', // H.264 High profile fallback
+           width: 1920,
+           height: 1080,
+           bitrate: 8000000,
+           framerate: 30
+         }
+       };
+       mc.decodingInfo(config).then(info => {
+         if (info.powerEfficient && desiredPreload !== 'auto') {
+           video.preload = 'auto';
+         }
+       }).catch(() => {});
+     }
+
+     // Lazy-load com IntersectionObserver: só carrega quando visível
+     const loadVideo = () => {
+       if (!source.src) {
+         const src = source.getAttribute('data-src');
+         if (src) {
+           source.src = src;
+           video.load();
+         }
+       }
+     };
+     const onIntersect = (entries, obs) => {
+       for (const e of entries) {
+         if (e.isIntersecting) {
+           loadVideo();
+           obs.disconnect();
+           break;
+         }
+       }
+     };
+     try {
+       const io = new IntersectionObserver(onIntersect, { root: null, threshold: 0.2 });
+       io.observe(heroSection);
+     } catch {
+       // Fallback: carregar imediatamente
+       loadVideo();
+     }
+
+     // Iniciar reprodução quando possível
+     video.addEventListener('canplay', () => {
+       video.play().catch(() => {});
+     }, { once: true });
+
+     // Métricas: FPS médio por ~2s
+     (function fpsMonitor() {
+       let last = performance.now();
+       let frames = 0;
+       let elapsed = 0;
+       const run = (now) => {
+         const dt = now - last;
+         last = now;
+         elapsed += dt;
+         frames += 1;
+         if (elapsed < 2000) {
+           requestAnimationFrame(run);
+         } else {
+           const fps = Math.round((frames / (elapsed / 1000)));
+           console.debug('[HeroVideo] FPS ~', fps);
+         }
+       };
+       requestAnimationFrame(run);
+     })();
+
+     // Métricas: TTFB do recurso de vídeo (se disponível)
+     (function ttfbMonitor() {
+       const src = source.getAttribute('data-src');
+       if (!src || !performance || !performance.getEntriesByType) return;
+       setTimeout(() => {
+         try {
+           const entries = performance.getEntriesByType('resource') || [];
+           const match = entries.find(e => (e.name || '').includes(src));
+           if (match && typeof match.responseStart === 'number' && typeof match.startTime === 'number') {
+             const ttfb = Math.max(0, match.responseStart - match.startTime);
+             console.debug('[HeroVideo] TTFB ms', Math.round(ttfb));
+           }
+         } catch {}
+       }, 3000);
+     })();
+
+     // Métricas: uso de memória (se suportado)
+     (function memoryMonitor() {
+       const m = performance && performance.memory;
+       if (!m) return;
+       console.debug('[HeroVideo] JS Heap Used MB', Math.round(m.usedJSHeapSize / (1024*1024)));
+     })();
+   })();
+
+  // Carrossel de banners promocionais: autoplay, setas, indicadores e teclado
+  (function() {
+    const carousel = document.querySelector('#promo-carousel');
+    if (!carousel) return;
+
+    const slides = carousel.querySelectorAll('.carousel-slide');
+    const prevBtn = carousel.querySelector('[data-carousel-prev]');
+    const nextBtn = carousel.querySelector('[data-carousel-next]');
+    const dots = carousel.querySelectorAll('[data-carousel-dot]');
+
+    let index = 0;
+    let timer = null;
+    const total = slides.length;
+    const intervalMs = 5000; // 5s entre trocas
+
+    const animationMs = 700; // deve refletir duration-700
+    let isAnimating = false;
+
+    const setActive = (i) => {
+      isAnimating = true;
+      slides.forEach((s, idx) => {
+        const active = idx === i;
+        s.classList.toggle('opacity-100', active);
+        s.classList.toggle('opacity-0', !active);
+        s.setAttribute('aria-hidden', (!active).toString());
+        s.tabIndex = active ? 0 : -1;
+      });
+      dots.forEach((d, idx) => {
+        const active = idx === i;
+        d.classList.toggle('bg-primary', active);
+        d.classList.toggle('bg-white/70', !active);
+        d.setAttribute('aria-current', active ? 'true' : 'false');
+        d.setAttribute('aria-selected', active ? 'true' : 'false');
+      });
+      setTimeout(() => { isAnimating = false; }, animationMs + 50);
+    };
+
+    const goTo = (i) => {
+      index = (i + total) % total;
+      setActive(index);
+    };
+
+    const next = () => { 
+      if (!isAnimating) {
+        goTo(index + 1);
+        resetTimer();
+      }
+    };
+    const prev = () => { 
+      if (!isAnimating) {
+        goTo(index - 1);
+        resetTimer();
+      }
+    };
+
+    const startTimer = () => {
+      stopTimer(); // Garantir que não há timer duplicado
+      timer = setInterval(() => {
+        if (!isAnimating) {
+          goTo(index + 1);
+        }
+      }, intervalMs);
+    };
+    const stopTimer = () => {
+      if (timer) {
+        clearInterval(timer);
+        timer = null;
+      }
+    };
+    const resetTimer = () => {
+      stopTimer();
+      startTimer();
+    };
+
+    prevBtn && prevBtn.addEventListener('click', prev);
+    nextBtn && nextBtn.addEventListener('click', next);
+
+    dots.forEach((d) => {
+      d.addEventListener('click', () => {
+        const i = Number(d.dataset.carouselDot);
+        if (!Number.isNaN(i) && !isAnimating) {
+          goTo(i);
+          resetTimer(); // Reiniciar timer após clique manual
+        }
+      });
+      d.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const i = Number(d.dataset.carouselDot);
+          if (!Number.isNaN(i) && !isAnimating) {
+            goTo(i);
+            resetTimer(); // Reiniciar timer após clique manual
+          }
+        }
+      });
+    });
+
+    // Pausar autoplay ao passar o mouse sobre a área do carrossel
+    carousel.addEventListener('mouseenter', stopTimer);
+    carousel.addEventListener('mouseleave', resetTimer);
+
+    // Navegação por teclado quando dentro do carrossel
+    carousel.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') { 
+        prev(); 
+        e.preventDefault(); 
+      }
+      if (e.key === 'ArrowRight') { 
+        next(); 
+        e.preventDefault(); 
+      }
+    });
+
+    // Inicialização
+    setActive(index);
+    startTimer();
+  })();
+
+  const img = new Image();
+  img.onload = () => {
+    try {
+      const rect = heroContent.getBoundingClientRect();
+      const secRect = heroSection.getBoundingClientRect();
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d', { willReadFrequently: true });
+      // Amostra pequena para performance
+      const sampleW = 100, sampleH = 60;
+      canvas.width = sampleW;
+      canvas.height = sampleH;
+
+      // Desenhar pôster proporcionalmente ao tamanho da seção hero
+      ctx.drawImage(img, 0, 0, sampleW, sampleH);
+
+      // Amostrar região central (representativa do conteúdo sobreposto)
+      const data = ctx.getImageData(Math.max(0, sampleW / 4), Math.max(0, sampleH / 4), Math.max(1, sampleW / 2), Math.max(1, sampleH / 2)).data;
+
+      let totalLum = 0, count = 0;
+      for (let i = 0; i < data.length; i += 4) {
+        const r = data[i], g = data[i + 1], b = data[i + 2];
+        totalLum += relLum(r, g, b);
+        count++;
+      }
+      const avgLum = totalLum / Math.max(1, count);
+      checkAndAdjust(avgLum);
+    } catch {
+      // fallback simples: luminância média
+      checkAndAdjust(0.5);
+    }
+  };
+  img.onerror = () => checkAndAdjust(0.5);
+  // Evitar CORS: pôster é local no projeto
+  img.src = posterSrc;
+</script>
+
+<!-- Script do Formulário de Contato -->
+<script>
+  (function() {
+    const contactForm = document.getElementById('contact-form');
+    if (!contactForm) return;
+
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Obter dados do formulário
+      const formData = new FormData(contactForm);
+      const nome = formData.get('nome');
+      const email = formData.get('email');
+      const assunto = formData.get('assunto');
+      const mensagem = formData.get('mensagem');
+
+      // Criar mensagem de sucesso
+      const successMessage = document.createElement('div');
+      successMessage.className = 'mt-4 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg';
+      successMessage.innerHTML = `
+        <div class="flex items-start">
+          <span class="material-symbols-outlined text-green-600 dark:text-green-400 mr-2">check_circle</span>
+          <div>
+            <h4 class="font-semibold text-green-800 dark:text-green-300">Mensagem enviada com sucesso!</h4>
+            <p class="text-sm text-green-700 dark:text-green-400 mt-1">Obrigado pelo contato, ${nome}. Retornaremos em breve.</p>
+          </div>
+        </div>
+      `;
+
+      // Remover mensagem anterior se existir
+      const existingMessage = contactForm.querySelector('.success-message');
+      if (existingMessage) {
+        existingMessage.remove();
+      }
+
+      // Adicionar mensagem de sucesso
+      successMessage.classList.add('success-message');
+      contactForm.appendChild(successMessage);
+
+      // Limpar formulário
+      contactForm.reset();
+
+      // Scroll suave para a mensagem
+      successMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+      // Remover mensagem após 5 segundos
+      setTimeout(() => {
+        successMessage.style.opacity = '0';
+        successMessage.style.transition = 'opacity 0.3s ease';
+        setTimeout(() => successMessage.remove(), 300);
+      }, 5000);
+
+      // Aqui você pode adicionar código para enviar os dados para um backend
+      // Exemplo:
+      // fetch('/api/contato', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify({ nome, email, assunto, mensagem })
+      // });
+    });
+  })();
+</script>
+<script src="js/search.js"></script>
+
+<!-- Script para scroll suave até o header -->
+<script>
+  (function() {
+    const areasAtuacaoLink = document.getElementById('areas-atuacao-link');
+    const header = document.querySelector('header');
+    
+    if (areasAtuacaoLink) {
+      areasAtuacaoLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Fazer scroll até o topo da página (header)
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+    }
+  })();
+</script>
+
+<!-- Script para animações de entrada profissionais -->
+<script>
+  (function() {
+    'use strict';
+
+    // Verificar preferência de movimento reduzido
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    if (prefersReducedMotion) {
+      // Se preferir movimento reduzido, remover todas as classes de animação
+      document.querySelectorAll('.hero-badge, .hero-text-1, .hero-text-2, .hero-text-3, .hero-card, .section-animate, .news-card').forEach(el => {
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+        el.style.animation = 'none';
+        el.style.transition = 'none';
+      });
+      return;
+    }
+
+    // Animar cards da hero com stagger suave e fluido
+    function animateHeroCards() {
+      const heroCards = document.querySelectorAll('.hero-card');
+      const startDelay = 600; // Delay após textos começarem (0.6s)
+      const staggerDelay = 150; // 0.15s entre cada card para efeito mais suave e lento
+      
+      heroCards.forEach((card, index) => {
+        const delay = startDelay + (index * staggerDelay);
+        
+        setTimeout(() => {
+          card.classList.add('animate');
+        }, delay);
+      });
+    }
+
+    // Iniciar animação dos cards da hero após textos começarem
+    function initHeroCards() {
+      animateHeroCards();
+      
+      // Efeito de borda animada nos cards da hero section
+      const heroCards = document.querySelectorAll('.hero-cards-grid .area-card');
+      
+      heroCards.forEach(card => {
+        let isHovering = false;
+        
+        card.addEventListener('mousemove', (e) => {
+          if (!isHovering) return;
+          
+          const rect = card.getBoundingClientRect();
+          const x = ((e.clientX - rect.left) / rect.width) * 100;
+          const y = ((e.clientY - rect.top) / rect.height) * 100;
+          
+          // Atualiza posição do centro do gradiente
+          card.style.setProperty('--pos-x', `${x}%`);
+          card.style.setProperty('--pos-y', `${y}%`);
+        });
+        
+        card.addEventListener('mouseenter', () => {
+          isHovering = true;
+        });
+        
+        card.addEventListener('mouseleave', () => {
+          isHovering = false;
+          // Volta ao centro
+          card.style.setProperty('--pos-x', '50%');
+          card.style.setProperty('--pos-y', '50%');
+        });
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initHeroCards);
+    } else {
+      initHeroCards();
+    }
+
+    // Função para animar cards de notícias de forma sequenciada
+    function animateNewsCardsSequentially(container) {
+      const newsCards = container.querySelectorAll('.news-card');
+      const staggerDelay = 150; // 0.15s entre cada card
+      
+      // Verificar se encontrou os cards
+      if (newsCards.length === 0) {
+        console.warn('Nenhum card de notícia encontrado');
+        return;
+      }
+      
+      // Animar sequencialmente
+      newsCards.forEach((card, index) => {
+        setTimeout(() => {
+          card.classList.add('animate');
+        }, index * staggerDelay);
+      });
+    }
+
+    // Intersection Observer para elementos que devem animar ao entrar na viewport
+    const observerOptions = {
+      threshold: 0.15,
+      rootMargin: '0px 0px -80px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Se for a seção de notícias
+          if (entry.target.id === 'noticias') {
+            const newsSection = entry.target;
+            // Animar o título, subtítulo e botões primeiro
+            const sectionHeader = newsSection.querySelector('.section-animate');
+            if (sectionHeader) {
+              sectionHeader.classList.add('animate');
+            }
+            // Aguardar a animação do título terminar antes de animar os cards sequencialmente
+            setTimeout(() => {
+              animateNewsCardsSequentially(newsSection);
+            }, 600); // Delay de 0.6s para garantir que título apareceu completamente primeiro
+            
+            observer.unobserve(entry.target);
+          } else if (entry.target.classList.contains('news-card')) {
+            // Não animar cards individuais - eles serão animados pela seção
+            observer.unobserve(entry.target);
+          } else {
+            // Outras seções
+            entry.target.classList.add('animate');
+            observer.unobserve(entry.target);
+          }
+        }
+      });
+    }, observerOptions);
+
+    // Observar a seção de notícias diretamente
+    const noticiasSection = document.getElementById('noticias');
+    if (noticiasSection) {
+      // Garantir que os cards não sejam observados individualmente
+      const newsCards = noticiasSection.querySelectorAll('.news-card');
+      newsCards.forEach(card => {
+        // Remover qualquer observação individual que possa existir
+        try {
+          observer.unobserve(card);
+        } catch (e) {
+          // Ignorar erro se o card não estiver sendo observado
+        }
+      });
+      
+      // Observar apenas a seção
+      observer.observe(noticiasSection);
+    }
+
+    // Observar outras seções com classe section-animate
+    document.querySelectorAll('.section-animate').forEach(el => {
+      if (!el.closest('#noticias')) {
+        observer.observe(el);
+      }
+    });
+
+    // Word Rotate Effect
+    (function() {
+      const wordRotateContainer = document.querySelector('.word-rotate-container');
+      if (!wordRotateContainer) return;
+
+      const words = ['Transforma!', 'Inova!', 'Integra!', 'Impulsiona!'];
+      let currentIndex = 0;
+      const duration = 2500; // 2.5 segundos entre cada palavra
+      let rotateInterval = null;
+
+      // Calcular largura máxima necessária para todas as palavras
+      function calculateMaxWidth() {
+        const tempSpan = document.createElement('span');
+        tempSpan.style.visibility = 'hidden';
+        tempSpan.style.position = 'absolute';
+        tempSpan.style.whiteSpace = 'nowrap';
+        tempSpan.style.fontFamily = window.getComputedStyle(wordRotateContainer).fontFamily;
+        tempSpan.style.fontSize = window.getComputedStyle(wordRotateContainer).fontSize;
+        tempSpan.style.fontWeight = window.getComputedStyle(wordRotateContainer).fontWeight;
+        tempSpan.style.fontStyle = 'italic';
+        document.body.appendChild(tempSpan);
+
+        let maxWidth = 0;
+        words.forEach(word => {
+          tempSpan.textContent = word;
+          const width = tempSpan.offsetWidth;
+          if (width > maxWidth) {
+            maxWidth = width;
+          }
+        });
+
+        document.body.removeChild(tempSpan);
+        return maxWidth + 10; // Adicionar pequeno padding extra
+      }
+
+      // Ajustar largura do container
+      function adjustContainerWidth() {
+        const maxWidth = calculateMaxWidth();
+        wordRotateContainer.style.minWidth = maxWidth + 'px';
+      }
+
+      function rotateWord() {
+        const currentWord = wordRotateContainer.querySelector('.word-rotate-word');
+        if (!currentWord) return;
+
+        // Adicionar classe exit para animar saída
+        currentWord.classList.add('exit');
+        currentWord.classList.remove('active');
+
+        // Após animação de saída, trocar palavra
+        setTimeout(() => {
+          currentIndex = (currentIndex + 1) % words.length;
+          currentWord.textContent = words[currentIndex];
+          currentWord.classList.remove('exit');
+          currentWord.classList.add('active');
+        }, 250); // Duração da transição
+      }
+
+      // Ajustar largura inicialmente
+      adjustContainerWidth();
+
+      // Ajustar largura quando a janela redimensionar
+      window.addEventListener('resize', adjustContainerWidth);
+
+      // Iniciar com a primeira palavra visível após um delay
+      setTimeout(() => {
+        const currentWord = wordRotateContainer.querySelector('.word-rotate-word');
+        if (currentWord) {
+          // Garantir que o texto inicial está correto
+          currentWord.textContent = words[0];
+          currentWord.classList.add('active');
+          
+          // Reajustar largura após o texto ser definido
+          setTimeout(() => {
+            adjustContainerWidth();
+          }, 50);
+          
+          // Iniciar rotação após um delay
+          setTimeout(() => {
+            rotateInterval = setInterval(rotateWord, duration);
+          }, duration); // Aguardar primeira palavra aparecer completamente
+        }
+      }, 600); // Delay para aparecer após animação do título
+
+      // Limpar intervalo se a página for desfocada (performance)
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden && rotateInterval) {
+          clearInterval(rotateInterval);
+          rotateInterval = null;
+        } else if (!document.hidden && !rotateInterval) {
+          const currentWord = wordRotateContainer.querySelector('.word-rotate-word');
+          if (currentWord && currentWord.classList.contains('active')) {
+            rotateInterval = setInterval(rotateWord, duration);
+          }
+        }
+      });
+    })();
+
+  })();
+</script>

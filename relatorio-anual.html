@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="description" content="Relatórios Anuais de Atividades da SECPLAN - Acesse os relatórios completos de todos os anos"/>
+<meta name="keywords" content="Relatório Anual, SECPLAN, MPAC, Atividades, Relatórios"/>
+<title>Relatório Anual de Atividades - SECPLAN</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&amp;display=swap" rel="stylesheet" media="print" onload="this.media='all'"/>
+<noscript><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/></noscript>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" media="print" onload="this.media='all'"/>
+<noscript><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/></noscript>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#8D2B2A",
+                        "background-light": "#F3F4F6",
+                        "background-dark": "#111827",
+                    },
+                    fontFamily: {
+                        display: ["Roboto", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                    },
+                },
+            },
+        };
+    </script>
+<link rel="preload" href="css/relatorio-anual.css" as="style"/>
+<link rel="stylesheet" href="css/relatorio-anual.css"/>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-200">
+<div class="w-full">
+<div class="barra-superior" aria-hidden="true"></div>
+<header class="bg-white dark:bg-gray-800 sticky top-0 z-50 transition-shadow duration-300">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-24">
+<div class="flex-shrink-0">
+<a class="flex items-center" href="index.html" aria-label="Início">
+  <img
+    src="assets/logo_mpac_secplan.svg"
+    alt="SECPLAN – Secretaria de Planejamento Institucional e Inovação do MPAC"
+    class="h-12 sm:h-14 md:h-16 w-auto"
+    decoding="async"
+    fetchpriority="high"
+  />
+</a>
+</div>
+<div class="hidden md:flex items-center space-x-8">
+<nav class="flex items-center space-x-6">
+<a class="font-bold text-sm uppercase tracking-wider text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" href="sobre-nos.html">Sobre Nós</a>
+<a class="font-bold text-sm uppercase tracking-wider text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" href="index.html#hero">Áreas de Atuação</a>
+<a class="font-bold text-sm uppercase tracking-wider text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" href="index.html#noticias">Notícias</a>
+<a class="font-bold text-sm uppercase tracking-wider text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" href="index.html#contato">Contato</a>
+</nav>
+</div>
+</div>
+</div>
+<div class="bg-gray-100 dark:bg-gray-700">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
+<div class="relative max-w-lg mx-auto" role="search" aria-label="Pesquisar no site">
+<label for="site-search" class="sr-only">Buscar no site</label>
+<input id="site-search" class="w-full pl-5 pr-12 py-3 border border-gray-300 dark:border-gray-600 rounded-full bg-white dark:bg-gray-800 text-base placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent shadow-sm" placeholder="O que você procura?" type="text"/>
+<button class="absolute inset-y-0 right-0 flex items-center justify-center w-12 h-full text-white bg-primary rounded-r-full hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+<span class="material-symbols-outlined">
+                                search
+                            </span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<main>
+<section class="report-page" aria-labelledby="report-title">
+  <div class="report-page__container">
+    <header class="report-page__header">
+      <h1 id="report-title" class="report-page__title">Relatório Anual de Atividades</h1>
+      <p class="report-page__subtitle">Acesse os relatórios completos de todas as atividades da SECPLAN</p>
+    </header>
+    
+    <article class="report-page__content">
+      <div class="report-page__back">
+        <a href="index.html" class="report-page__back-link" aria-label="Voltar para página inicial">
+          <span class="material-symbols-outlined report-page__back-icon">arrow_back</span>
+          <span class="report-page__back-text">Voltar</span>
+        </a>
+      </div>
+
+      <!-- Grid de Capas -->
+      <div class="report-page__grid" role="list" aria-label="Relatórios anuais disponíveis">
+        
+        <!-- Relatório Gestão 2024 -->
+        <article class="report-card" role="listitem">
+          <a href="#" class="report-card__link" aria-label="Acessar Relatório Gestão 2024" target="_blank" rel="noopener noreferrer">
+            <div class="report-card__cover">
+              <picture class="report-card__image">
+                <source srcset="assets/capa09b.jpg" type="image/webp"/>
+                <img 
+                  src="assets/capa09b.jpg" 
+                  alt="Capa do Relatório Gestão 2024"
+                  class="report-card__image-img"
+                  loading="lazy"
+                  decoding="async"
+                  width="300"
+                  height="400"
+                />
+              </picture>
+              <div class="report-card__overlay">
+                <span class="material-symbols-outlined report-card__icon">picture_as_pdf</span>
+                <span class="report-card__action-text">Visualizar PDF</span>
+              </div>
+            </div>
+            <div class="report-card__info">
+              <h2 class="report-card__title">Relatório Gestão 2024</h2>
+              <p class="report-card__year">2024</p>
+            </div>
+          </a>
+        </article>
+
+        <!-- Relatório Gestão 2023 -->
+        <article class="report-card" role="listitem">
+          <a href="#" class="report-card__link" aria-label="Acessar Relatório Gestão 2023" target="_blank" rel="noopener noreferrer">
+            <div class="report-card__cover">
+              <picture class="report-card__image">
+                <source srcset="assets/capa01c.jpg" type="image/webp"/>
+                <img 
+                  src="assets/capa01c.jpg" 
+                  alt="Capa do Relatório Gestão 2023"
+                  class="report-card__image-img"
+                  loading="lazy"
+                  decoding="async"
+                  width="300"
+                  height="400"
+                />
+              </picture>
+              <div class="report-card__overlay">
+                <span class="material-symbols-outlined report-card__icon">picture_as_pdf</span>
+                <span class="report-card__action-text">Visualizar PDF</span>
+              </div>
+            </div>
+            <div class="report-card__info">
+              <h2 class="report-card__title">Relatório Gestão 2023</h2>
+              <p class="report-card__year">2023</p>
+            </div>
+          </a>
+        </article>
+
+        <!-- Relatório Gestão 2022 -->
+        <article class="report-card" role="listitem">
+          <a href="#" class="report-card__link" aria-label="Acessar Relatório Gestão 2022" target="_blank" rel="noopener noreferrer">
+            <div class="report-card__cover">
+              <picture class="report-card__image">
+                <source srcset="assets/capa02c.jpg" type="image/webp"/>
+                <img 
+                  src="assets/capa02c.jpg" 
+                  alt="Capa do Relatório Gestão 2022"
+                  class="report-card__image-img"
+                  loading="lazy"
+                  decoding="async"
+                  width="300"
+                  height="400"
+                />
+              </picture>
+              <div class="report-card__overlay">
+                <span class="material-symbols-outlined report-card__icon">picture_as_pdf</span>
+                <span class="report-card__action-text">Visualizar PDF</span>
+              </div>
+            </div>
+            <div class="report-card__info">
+              <h2 class="report-card__title">Relatório Gestão 2022</h2>
+              <p class="report-card__year">2022</p>
+            </div>
+          </a>
+        </article>
+
+        <!-- Relatório Gestão 2021 -->
+        <article class="report-card" role="listitem">
+          <a href="#" class="report-card__link" aria-label="Acessar Relatório Gestão 2021" target="_blank" rel="noopener noreferrer">
+            <div class="report-card__cover">
+              <picture class="report-card__image">
+                <source srcset="assets/capa03c.jpg" type="image/webp"/>
+                <img 
+                  src="assets/capa03c.jpg" 
+                  alt="Capa do Relatório Gestão 2021"
+                  class="report-card__image-img"
+                  loading="lazy"
+                  decoding="async"
+                  width="300"
+                  height="400"
+                />
+              </picture>
+              <div class="report-card__overlay">
+                <span class="material-symbols-outlined report-card__icon">picture_as_pdf</span>
+                <span class="report-card__action-text">Visualizar PDF</span>
+              </div>
+            </div>
+            <div class="report-card__info">
+              <h2 class="report-card__title">Relatório Gestão 2021</h2>
+              <p class="report-card__year">2021</p>
+            </div>
+          </a>
+        </article>
+
+        <!-- Relatório Gestão 2020 -->
+        <article class="report-card" role="listitem">
+          <a href="#" class="report-card__link" aria-label="Acessar Relatório Gestão 2020" target="_blank" rel="noopener noreferrer">
+            <div class="report-card__cover">
+              <picture class="report-card__image">
+                <source srcset="assets/capa04c.jpg" type="image/webp"/>
+                <img 
+                  src="assets/capa04c.jpg" 
+                  alt="Capa do Relatório Gestão 2020"
+                  class="report-card__image-img"
+                  loading="lazy"
+                  decoding="async"
+                  width="300"
+                  height="400"
+                />
+              </picture>
+              <div class="report-card__overlay">
+                <span class="material-symbols-outlined report-card__icon">picture_as_pdf</span>
+                <span class="report-card__action-text">Visualizar PDF</span>
+              </div>
+            </div>
+            <div class="report-card__info">
+              <h2 class="report-card__title">Relatório Gestão 2020</h2>
+              <p class="report-card__year">2020</p>
+            </div>
+          </a>
+        </article>
+
+        <!-- Relatório Gestão 2019 -->
+        <article class="report-card" role="listitem">
+          <a href="#" class="report-card__link" aria-label="Acessar Relatório Gestão 2019" target="_blank" rel="noopener noreferrer">
+            <div class="report-card__cover">
+              <picture class="report-card__image">
+                <source srcset="assets/capa05c.jpg" type="image/webp"/>
+                <img 
+                  src="assets/capa05c.jpg" 
+                  alt="Capa do Relatório Gestão 2019"
+                  class="report-card__image-img"
+                  loading="lazy"
+                  decoding="async"
+                  width="300"
+                  height="400"
+                />
+              </picture>
+              <div class="report-card__overlay">
+                <span class="material-symbols-outlined report-card__icon">picture_as_pdf</span>
+                <span class="report-card__action-text">Visualizar PDF</span>
+              </div>
+            </div>
+            <div class="report-card__info">
+              <h2 class="report-card__title">Relatório Gestão 2019</h2>
+              <p class="report-card__year">2019</p>
+            </div>
+          </a>
+        </article>
+
+        <!-- Relatório Gestão 2018 -->
+        <article class="report-card" role="listitem">
+          <a href="#" class="report-card__link" aria-label="Acessar Relatório Gestão 2018" target="_blank" rel="noopener noreferrer">
+            <div class="report-card__cover">
+              <picture class="report-card__image">
+                <source srcset="assets/capa06c.jpg" type="image/webp"/>
+                <img 
+                  src="assets/capa06c.jpg" 
+                  alt="Capa do Relatório Gestão 2018"
+                  class="report-card__image-img"
+                  loading="lazy"
+                  decoding="async"
+                  width="300"
+                  height="400"
+                />
+              </picture>
+              <div class="report-card__overlay">
+                <span class="material-symbols-outlined report-card__icon">picture_as_pdf</span>
+                <span class="report-card__action-text">Visualizar PDF</span>
+              </div>
+            </div>
+            <div class="report-card__info">
+              <h2 class="report-card__title">Relatório Gestão 2018</h2>
+              <p class="report-card__year">2018</p>
+            </div>
+          </a>
+        </article>
+
+        <!-- Relatório Gestão 2017 – Parte 1 -->
+        <article class="report-card" role="listitem">
+          <a href="#" class="report-card__link" aria-label="Acessar Relatório Gestão 2017 – Parte 1" target="_blank" rel="noopener noreferrer">
+            <div class="report-card__cover">
+              <picture class="report-card__image">
+                <source srcset="assets/capa07c.jpg" type="image/webp"/>
+                <img 
+                  src="assets/capa07c.jpg" 
+                  alt="Capa do Relatório Gestão 2017 – Parte 1"
+                  class="report-card__image-img"
+                  loading="lazy"
+                  decoding="async"
+                  width="300"
+                  height="400"
+                />
+              </picture>
+              <div class="report-card__overlay">
+                <span class="material-symbols-outlined report-card__icon">picture_as_pdf</span>
+                <span class="report-card__action-text">Visualizar PDF</span>
+              </div>
+            </div>
+            <div class="report-card__info">
+              <h2 class="report-card__title">Relatório Gestão 2017 – Parte 1</h2>
+              <p class="report-card__year">2017</p>
+            </div>
+          </a>
+        </article>
+
+        <!-- Relatório Gestão 2017 – Parte 2 -->
+        <article class="report-card" role="listitem">
+          <a href="#" class="report-card__link" aria-label="Acessar Relatório Gestão 2017 – Parte 2" target="_blank" rel="noopener noreferrer">
+            <div class="report-card__cover">
+              <picture class="report-card__image">
+                <source srcset="assets/capa08c.jpg" type="image/webp"/>
+                <img 
+                  src="assets/capa08c.jpg" 
+                  alt="Capa do Relatório Gestão 2017 – Parte 2"
+                  class="report-card__image-img"
+                  loading="lazy"
+                  decoding="async"
+                  width="300"
+                  height="400"
+                />
+              </picture>
+              <div class="report-card__overlay">
+                <span class="material-symbols-outlined report-card__icon">picture_as_pdf</span>
+                <span class="report-card__action-text">Visualizar PDF</span>
+              </div>
+            </div>
+            <div class="report-card__info">
+              <h2 class="report-card__title">Relatório Gestão 2017 – Parte 2</h2>
+              <p class="report-card__year">2017</p>
+            </div>
+          </a>
+        </article>
+
+        <!-- Relatório Gestão 2017 – Parte 3 -->
+        <article class="report-card" role="listitem">
+          <a href="#" class="report-card__link" aria-label="Acessar Relatório Gestão 2017 – Parte 3" target="_blank" rel="noopener noreferrer">
+            <div class="report-card__cover">
+              <picture class="report-card__image">
+                <source srcset="assets/capa09c.jpg" type="image/webp"/>
+                <img 
+                  src="assets/capa09c.jpg" 
+                  alt="Capa do Relatório Gestão 2017 – Parte 3"
+                  class="report-card__image-img"
+                  loading="lazy"
+                  decoding="async"
+                  width="300"
+                  height="400"
+                />
+              </picture>
+              <div class="report-card__overlay">
+                <span class="material-symbols-outlined report-card__icon">picture_as_pdf</span>
+                <span class="report-card__action-text">Visualizar PDF</span>
+              </div>
+            </div>
+            <div class="report-card__info">
+              <h2 class="report-card__title">Relatório Gestão 2017 – Parte 3</h2>
+              <p class="report-card__year">2017</p>
+            </div>
+          </a>
+        </article>
+
+        <!-- Relatório Gestão 2016 – Parte 1 -->
+        <article class="report-card" role="listitem">
+          <a href="#" class="report-card__link" aria-label="Acessar Relatório Gestão 2016 – Parte 1" target="_blank" rel="noopener noreferrer">
+            <div class="report-card__cover">
+              <picture class="report-card__image">
+                <source srcset="assets/capa10c.jpg" type="image/webp"/>
+                <img 
+                  src="assets/capa10c.jpg" 
+                  alt="Capa do Relatório Gestão 2016 – Parte 1"
+                  class="report-card__image-img"
+                  loading="lazy"
+                  decoding="async"
+                  width="300"
+                  height="400"
+                />
+              </picture>
+              <div class="report-card__overlay">
+                <span class="material-symbols-outlined report-card__icon">picture_as_pdf</span>
+                <span class="report-card__action-text">Visualizar PDF</span>
+              </div>
+            </div>
+            <div class="report-card__info">
+              <h2 class="report-card__title">Relatório Gestão 2016 – Parte 1</h2>
+              <p class="report-card__year">2016</p>
+            </div>
+          </a>
+        </article>
+
+        <!-- Relatório Gestão 2016 – Parte 2 -->
+        <article class="report-card" role="listitem">
+          <a href="#" class="report-card__link" aria-label="Acessar Relatório Gestão 2016 – Parte 2" target="_blank" rel="noopener noreferrer">
+            <div class="report-card__cover">
+              <picture class="report-card__image">
+                <source srcset="assets/capa11c.jpg" type="image/webp"/>
+                <img 
+                  src="assets/capa11c.jpg" 
+                  alt="Capa do Relatório Gestão 2016 – Parte 2"
+                  class="report-card__image-img"
+                  loading="lazy"
+                  decoding="async"
+                  width="300"
+                  height="400"
+                />
+              </picture>
+              <div class="report-card__overlay">
+                <span class="material-symbols-outlined report-card__icon">picture_as_pdf</span>
+                <span class="report-card__action-text">Visualizar PDF</span>
+              </div>
+            </div>
+            <div class="report-card__info">
+              <h2 class="report-card__title">Relatório Gestão 2016 – Parte 2</h2>
+              <p class="report-card__year">2016</p>
+            </div>
+          </a>
+        </article>
+
+        <!-- Relatório Gestão 2015 – Parte 1 -->
+        <article class="report-card" role="listitem">
+          <a href="#" class="report-card__link" aria-label="Acessar Relatório Gestão 2015 – Parte 1" target="_blank" rel="noopener noreferrer">
+            <div class="report-card__cover">
+              <picture class="report-card__image">
+                <source srcset="assets/capa13c.jpg" type="image/webp"/>
+                <img 
+                  src="assets/capa13c.jpg" 
+                  alt="Capa do Relatório Gestão 2015 – Parte 1"
+                  class="report-card__image-img"
+                  loading="lazy"
+                  decoding="async"
+                  width="300"
+                  height="400"
+                />
+              </picture>
+              <div class="report-card__overlay">
+                <span class="material-symbols-outlined report-card__icon">picture_as_pdf</span>
+                <span class="report-card__action-text">Visualizar PDF</span>
+              </div>
+            </div>
+            <div class="report-card__info">
+              <h2 class="report-card__title">Relatório Gestão 2015 – Parte 1</h2>
+              <p class="report-card__year">2015</p>
+            </div>
+          </a>
+        </article>
+
+        <!-- Relatório Gestão 2015 – Parte 2 -->
+        <article class="report-card" role="listitem">
+          <a href="#" class="report-card__link" aria-label="Acessar Relatório Gestão 2015 – Parte 2" target="_blank" rel="noopener noreferrer">
+            <div class="report-card__cover">
+              <picture class="report-card__image">
+                <source srcset="assets/capa14c.jpg" type="image/webp"/>
+                <img 
+                  src="assets/capa14c.jpg" 
+                  alt="Capa do Relatório Gestão 2015 – Parte 2"
+                  class="report-card__image-img"
+                  loading="lazy"
+                  decoding="async"
+                  width="300"
+                  height="400"
+                />
+              </picture>
+              <div class="report-card__overlay">
+                <span class="material-symbols-outlined report-card__icon">picture_as_pdf</span>
+                <span class="report-card__action-text">Visualizar PDF</span>
+              </div>
+            </div>
+            <div class="report-card__info">
+              <h2 class="report-card__title">Relatório Gestão 2015 – Parte 2</h2>
+              <p class="report-card__year">2015</p>
+            </div>
+          </a>
+        </article>
+
+        <!-- Relatório Gestão 2014 -->
+        <article class="report-card" role="listitem">
+          <a href="#" class="report-card__link" aria-label="Acessar Relatório Gestão 2014" target="_blank" rel="noopener noreferrer">
+            <div class="report-card__cover">
+              <picture class="report-card__image">
+                <source srcset="assets/capa15c.jpg" type="image/webp"/>
+                <img 
+                  src="assets/capa15c.jpg" 
+                  alt="Capa do Relatório Gestão 2014"
+                  class="report-card__image-img"
+                  loading="lazy"
+                  decoding="async"
+                  width="300"
+                  height="400"
+                />
+              </picture>
+              <div class="report-card__overlay">
+                <span class="material-symbols-outlined report-card__icon">picture_as_pdf</span>
+                <span class="report-card__action-text">Visualizar PDF</span>
+              </div>
+            </div>
+            <div class="report-card__info">
+              <h2 class="report-card__title">Relatório Gestão 2014</h2>
+              <p class="report-card__year">2014</p>
+            </div>
+          </a>
+        </article>
+
+        <!-- Relatório Gestão 2012-2013 – Parte 1 -->
+        <article class="report-card" role="listitem">
+          <a href="#" class="report-card__link" aria-label="Acessar Relatório Gestão 2012-2013 – Parte 1" target="_blank" rel="noopener noreferrer">
+            <div class="report-card__cover">
+              <picture class="report-card__image">
+                <source srcset="assets/capa16c.jpg" type="image/webp"/>
+                <img 
+                  src="assets/capa16c.jpg" 
+                  alt="Capa do Relatório Gestão 2012-2013 – Parte 1"
+                  class="report-card__image-img"
+                  loading="lazy"
+                  decoding="async"
+                  width="300"
+                  height="400"
+                />
+              </picture>
+              <div class="report-card__overlay">
+                <span class="material-symbols-outlined report-card__icon">picture_as_pdf</span>
+                <span class="report-card__action-text">Visualizar PDF</span>
+              </div>
+            </div>
+            <div class="report-card__info">
+              <h2 class="report-card__title">Relatório Gestão 2012-2013 – Parte 1</h2>
+              <p class="report-card__year">2012-2013</p>
+            </div>
+          </a>
+        </article>
+
+        <!-- Relatório Gestão 2012-2013 – Parte 2 -->
+        <article class="report-card" role="listitem">
+          <a href="#" class="report-card__link" aria-label="Acessar Relatório Gestão 2012-2013 – Parte 2" target="_blank" rel="noopener noreferrer">
+            <div class="report-card__cover">
+              <picture class="report-card__image">
+                <source srcset="assets/capa17c.jpg" type="image/webp"/>
+                <img 
+                  src="assets/capa17c.jpg" 
+                  alt="Capa do Relatório Gestão 2012-2013 – Parte 2"
+                  class="report-card__image-img"
+                  loading="lazy"
+                  decoding="async"
+                  width="300"
+                  height="400"
+                />
+              </picture>
+              <div class="report-card__overlay">
+                <span class="material-symbols-outlined report-card__icon">picture_as_pdf</span>
+                <span class="report-card__action-text">Visualizar PDF</span>
+              </div>
+            </div>
+            <div class="report-card__info">
+              <h2 class="report-card__title">Relatório Gestão 2012-2013 – Parte 2</h2>
+              <p class="report-card__year">2012-2013</p>
+            </div>
+          </a>
+        </article>
+
+        <!-- Relatório Gestão 2012 -->
+        <article class="report-card" role="listitem">
+          <a href="#" class="report-card__link" aria-label="Acessar Relatório Gestão 2012" target="_blank" rel="noopener noreferrer">
+            <div class="report-card__cover">
+              <picture class="report-card__image">
+                <source srcset="assets/capa18c.jpg" type="image/webp"/>
+                <img 
+                  src="assets/capa18c.jpg" 
+                  alt="Capa do Relatório Gestão 2012"
+                  class="report-card__image-img"
+                  loading="lazy"
+                  decoding="async"
+                  width="300"
+                  height="400"
+                />
+              </picture>
+              <div class="report-card__overlay">
+                <span class="material-symbols-outlined report-card__icon">picture_as_pdf</span>
+                <span class="report-card__action-text">Visualizar PDF</span>
+              </div>
+            </div>
+            <div class="report-card__info">
+              <h2 class="report-card__title">Relatório Gestão 2012</h2>
+              <p class="report-card__year">2012</p>
+            </div>
+          </a>
+        </article>
+
+      </div>
+    </article>
+  </div>
+</section>
+</main>
+<footer class="bg-primary text-white">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+<div class="md:col-span-1">
+<a class="flex flex-col" href="index.html">
+<span class="text-4xl font-black text-white tracking-wider">SECPLAN</span>
+<span class="text-xs font-medium text-gray-300 tracking-widest">SECRETARIA DE PLANEJAMENTO</span>
+<span class="text-xs font-medium text-gray-300 tracking-widest">INSTITUCIONAL E INOVAÇÃO</span>
+</a>
+<p class="mt-4 text-sm text-gray-300">Promovendo a transformação através do planejamento estratégico e inovação.</p>
+</div>
+<div>
+<h3 class="text-sm font-bold uppercase tracking-wider text-gray-200">Links Rápidos</h3>
+<ul class="mt-4 space-y-2">
+<li><a class="text-sm text-gray-300 hover:text-white transition-colors" href="sobre-nos.html">Sobre Nós</a></li>
+<li><a class="text-sm text-gray-300 hover:text-white transition-colors" href="index.html#promo-carousel">Projetos</a></li>
+<li><a class="text-sm text-gray-300 hover:text-white transition-colors" href="index.html#noticias">Notícias</a></li>
+<li><a class="text-sm text-gray-300 hover:text-white transition-colors" href="#contato">Contato</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-sm font-bold uppercase tracking-wider text-gray-200">Legal</h3>
+<ul class="mt-4 space-y-2">
+<li><a class="text-sm text-gray-300 hover:text-white transition-colors" href="#">Política de Privacidade</a></li>
+<li><a class="text-sm text-gray-300 hover:text-white transition-colors" href="#">Termos de Uso</a></li>
+<li><a class="text-sm text-gray-300 hover:text-white transition-colors" href="#">Acessibilidade</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-sm font-bold uppercase tracking-wider text-gray-200">Siga-nos</h3>
+<div class="flex mt-4 space-x-4">
+<a aria-label="Facebook" class="text-gray-300 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white" href="#" target="_blank" rel="noopener noreferrer">
+<span class="sr-only">Facebook</span>
+<svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path></svg>
+</a>
+<a aria-label="Instagram" class="text-gray-300 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white" href="#" target="_blank" rel="noopener noreferrer">
+<span class="sr-only">Instagram</span>
+<svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.585-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.585-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.011-3.585.069-4.85c.149-3.225 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.85-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98C23.986 15.667 24 15.259 24 12s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98C15.667.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z"></path></svg>
+</a>
+<a aria-label="YouTube" class="text-gray-300 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white" href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">
+<span class="sr-only">YouTube</span>
+<svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.003 3.003 0 0 0-2.118-2.12C19.658 3.5 12 3.5 12 3.5s-7.658 0-9.38.566A3.003 3.003 0 0 0 .502 6.186 31.54 31.54 0 0 0 0 12c0 1.938.169 3.862.502 5.814a3.003 3.003 0 0 0 2.118 2.12C4.842 20.5 12 20.5 12 20.5s7.658 0 9.38-.566a3.003 3.003 0 0 0 2.118-2.12C23.831 15.862 24 13.938 24 12c0-1.938-.169-3.862-.502-5.814zM9.6 15.5v-7l6.4 3.5-6.4 3.5z"/></svg>
+</a>
+</div>
+</div>
+</div>
+<div class="mt-8 border-t border-white/20 pt-8 text-center">
+<p class="text-sm text-gray-300">© 2024 MPAC - SECPLAN - Secretaria de Planejamento Institucional e Inovação. Todos os direitos reservados.</p>
+</div>
+</div>
+</footer>
+</div>
+
+<script>
+   // Sombra suave no header quando houver scroll vertical > 0
+   const header = document.querySelector('header');
+   if (header) {
+     const applyShadow = () => {
+       if (window.scrollY > 0) {
+         header.classList.add('shadow-md');
+       } else {
+         header.classList.remove('shadow-md');
+       }
+     };
+     applyShadow();
+     window.addEventListener('scroll', applyShadow, { passive: true });
+   }
+</script>
+<script src="js/search.js"></script>
+</body>
+</html>
+
