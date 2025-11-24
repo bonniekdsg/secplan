@@ -138,6 +138,44 @@
   .download-btn .material-symbols-outlined {
     font-size: 1.25rem;
   }
+
+  /* Efeito hover de preenchimento para o botão "Voltar" */
+  .back-button {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    background-color: transparent !important;
+    border: 2px solid #8D2B2A;
+    color: #8D2B2A;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    display: inline-flex;
+    align-items: center;
+    transition: background-color 250ms ease, border-color 250ms ease, color 250ms ease;
+  }
+
+  .back-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    border-radius: 9999px;
+    background-color: #8D2B2A;
+    z-index: -1;
+    transition: all 250ms ease;
+  }
+
+  .back-button:hover {
+    background-color: #8D2B2A !important;
+    border-color: #8D2B2A;
+    color: #ffffff;
+  }
+
+  .back-button:hover::before {
+    width: 100%;
+  }
 </style>
 </head>
 <body class="font-display bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-200">
@@ -169,7 +207,12 @@
 </div>
 <div class="bg-gray-100 dark:bg-gray-700">
 <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
-<div class="relative max-w-lg mx-auto" role="search" aria-label="Pesquisar no site">
+<div class="max-w-3xl mx-auto flex items-center gap-4">
+<a href="planejamento-estrategico.html" class="back-button shrink-0" aria-label="Voltar para Planejamento Estratégico">
+<span class="material-symbols-outlined mr-2">arrow_back</span>
+<span class="font-medium hidden sm:inline">Voltar</span>
+</a>
+<div class="relative flex-1 w-full" role="search" aria-label="Pesquisar no site">
 <label for="site-search" class="sr-only">Buscar no site</label>
 <input id="site-search" class="w-full pl-5 pr-12 py-3 border border-gray-300 dark:border-gray-600 rounded-full bg-white dark:bg-gray-800 text-base placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent shadow-sm" placeholder="O que você procura?" type="text"/>
 <button class="absolute inset-y-0 right-0 flex items-center justify-center w-12 h-full text-white bg-primary rounded-r-full hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
@@ -190,12 +233,6 @@
     </header>
     
     <article class="instruments-page__content">
-      <div class="instruments-page__back">
-        <a href="planejamento-estrategico.html" class="instruments-page__back-link" aria-label="Voltar para Planejamento Estratégico">
-          <span class="material-symbols-outlined instruments-page__back-icon">arrow_back</span>
-          <span class="instruments-page__back-text">Voltar</span>
-        </a>
-      </div>
 
       <!-- Grid de Cards de Download -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
