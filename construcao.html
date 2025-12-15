@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="assets/favicons/favicon.ico"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicons/favicon-16x16.png"/>
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicons/favicon-32x32.png"/>
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/favicons/favicon-96x96.png"/>
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="assets/favicons/apple-icon-57x57.png"/>
+    <link rel="apple-touch-icon" sizes="60x60" href="assets/favicons/apple-icon-60x60.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="assets/favicons/apple-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/favicons/apple-icon-76x76.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="assets/favicons/apple-icon-114x114.png"/>
+    <link rel="apple-touch-icon" sizes="120x120" href="assets/favicons/apple-icon-120x120.png"/>
+    <link rel="apple-touch-icon" sizes="144x144" href="assets/favicons/apple-icon-144x144.png"/>
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/favicons/apple-icon-152x152.png"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicons/apple-icon-180x180.png"/>
+    <link rel="apple-touch-icon" href="assets/favicons/apple-icon.png"/>
+    <link rel="apple-touch-icon-precomposed" href="assets/favicons/apple-icon-precomposed.png"/>
+    <!-- Android Icons -->
+    <link rel="icon" type="image/png" sizes="36x36" href="assets/favicons/android-icon-36x36.png"/>
+    <link rel="icon" type="image/png" sizes="48x48" href="assets/favicons/android-icon-48x48.png"/>
+    <link rel="icon" type="image/png" sizes="72x72" href="assets/favicons/android-icon-72x72.png"/>
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/favicons/android-icon-96x96.png"/>
+    <link rel="icon" type="image/png" sizes="144x144" href="assets/favicons/android-icon-144x144.png"/>
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/favicons/android-icon-192x192.png"/>
+    <!-- Microsoft Tiles -->
+    <meta name="msapplication-TileColor" content="#ffffff"/>
+    <meta name="msapplication-TileImage" content="assets/favicons/ms-icon-144x144.png"/>
+    <meta name="msapplication-config" content="assets/favicons/browserconfig.xml"/>
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="assets/favicons/manifest.json"/>
+    <title>Em Construção</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            width: 100%;
+        }
+
+        body {
+            /* Fundo gradiente com as cores solicitadas */
+            background: linear-gradient(135deg, #4fc74e, #7ed664);
+            
+            /* Centralização flexbox */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            font-family: Arial, sans-serif;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('assets/bg_construção.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.5; /* Opacidade da imagem de fundo */
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            /* Garante que a imagem não fique maior que o necessário se for muito grande */
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="assets/const01.png" alt="Página em Construção">
+    </div>
+</body>
+</html>
