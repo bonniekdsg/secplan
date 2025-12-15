@@ -87,7 +87,7 @@
   
   .poa-description {
     max-width: 800px;
-    margin-bottom: 2rem;
+    margin: 0 auto 2rem auto;
     line-height: 1.8;
     color: #374151;
   }
@@ -108,6 +108,7 @@
     display: grid;
     gap: 2rem;
     max-width: 800px;
+    margin: 0 auto;
   }
   
   @media (min-width: 768px) {
@@ -180,6 +181,7 @@
 </div>
 <div class="hidden md:flex items-center space-x-8">
 <nav class="flex items-center space-x-6">
+<a class="font-bold text-sm uppercase tracking-wider text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" href="index.html">Início</a>
 <a class="font-bold text-sm uppercase tracking-wider text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" href="sobre-nos.html">Sobre Nós</a>
 <a class="font-bold text-sm uppercase tracking-wider text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" href="index.html#hero">Áreas de Atuação</a>
 <a class="font-bold text-sm uppercase tracking-wider text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" href="index.html#noticias">Notícias</a>
@@ -231,7 +233,7 @@
 
       <div class="poa-cards-container">
         <!-- Card SIGE -->
-        <a href="#" class="strategic-card" aria-label="Acessar Sistema Integrado de Gestão Estratégica - SIGE" target="_blank" rel="noopener noreferrer">
+        <a href="https://sige.mpac.mp.br/login" class="strategic-card" aria-label="Acessar Sistema Integrado de Gestão Estratégica - SIGE" target="_blank" rel="noopener noreferrer">
           <div class="strategic-card-icon">
             <span class="material-symbols-outlined">settings</span>
           </div>
@@ -282,17 +284,25 @@
 <div>
 <h3 class="text-sm font-bold uppercase tracking-wider text-gray-200">Siga-nos</h3>
 <div class="flex mt-4 space-x-4">
-<a aria-label="Facebook" class="text-gray-300 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white" href="#" target="_blank" rel="noopener noreferrer">
+<a aria-label="Facebook" class="text-gray-300 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white" href="https://www.facebook.com/mpacre" target="_blank" rel="noopener noreferrer">
 <span class="sr-only">Facebook</span>
 <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path></svg>
 </a>
-<a aria-label="Instagram" class="text-gray-300 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white" href="#" target="_blank" rel="noopener noreferrer">
+<a aria-label="Instagram" class="text-gray-300 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white" href="https://www.instagram.com/mpacre/" target="_blank" rel="noopener noreferrer">
 <span class="sr-only">Instagram</span>
 <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.585-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.585-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.011-3.585.069-4.85c.149-3.225 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.85-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98C23.986 15.667 24 15.259 24 12s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98C15.667.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z"></path></svg>
 </a>
-<a aria-label="YouTube" class="text-gray-300 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white" href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">
+<a aria-label="YouTube" class="text-gray-300 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white" href="https://www.youtube.com/mpacre" target="_blank" rel="noopener noreferrer">
 <span class="sr-only">YouTube</span>
 <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.003 3.003 0 0 0-2.118-2.12C19.658 3.5 12 3.5 12 3.5s-7.658 0-9.38.566A3.003 3.003 0 0 0 .502 6.186 31.54 31.54 0 0 0 0 12c0 1.938.169 3.862.502 5.814a3.003 3.003 0 0 0 2.118 2.12C4.842 20.5 12 20.5 12 20.5s7.658 0 9.38-.566a3.003 3.003 0 0 0 2.118-2.12C23.831 15.862 24 13.938 24 12c0-1.938-.169-3.862-.502-5.814zM9.6 15.5v-7l6.4 3.5-6.4 3.5z"/></svg>
+</a>
+<a aria-label="X" class="text-gray-300 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white" href="https://x.com/mpacre" target="_blank" rel="noopener noreferrer">
+<span class="sr-only">X</span>
+<svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+</a>
+<a aria-label="MPAC" class="text-gray-300 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white" href="https://www.mpac.mp.br" target="_blank" rel="noopener noreferrer">
+<span class="sr-only">MPAC</span>
+<svg class="h-6 w-6" fill="currentColor" viewBox="0 0 200 200"><path fill-rule="evenodd" d="M163.95,78.07v43.57c3.32,2.61,6.48,5.41,9.45,8.4,3.64,3.66,7.03,7.62,10.11,11.83,1.84,2.51,3.56,5.1,5.17,7.77V50.18l-.4.71c-1.74,3.01-3.85,5.79-6.16,8.8-1.37,1.78-2.77,3.49-4.2,5.13-1.44,1.64-2.95,3.25-4.53,4.84h0s0,0,0,0c-2.97,2.99-6.13,5.79-9.45,8.4"/><path fill-rule="evenodd" d="M11.96,46.65c1.82,3.29,3.81,6.48,5.97,9.55,3.39,4.82,7.18,9.33,11.3,13.48,2.38,2.39,4.87,4.66,7.47,6.81v46.76c-2.6,2.15-5.09,4.42-7.47,6.81l-.09.09c-4.1,4.13-7.86,8.61-11.21,13.39-2.16,3.07-4.15,6.25-5.97,9.55V46.65Z"/><rect x="88.91" y="136.19" width="22.29" height="22.4"/><path d="M175.54,61.96c1.43-1.64,2.8-3.3,4.08-4.97,2.24-2.91,4.28-5.61,5.93-8.46,1.32-2.28,2.4-4.68,3.15-7.4h-22.3c-1.31,1.91-2.7,3.77-4.16,5.55-1.67,2.04-3.41,3.97-5.21,5.78-7.33,7.36-16.09,13.3-25.84,17.36-9.38,3.9-19.65,6.06-30.41,6.06s-21.04-2.16-30.42-6.06c-9.75-4.06-18.51-9.99-25.84-17.36h0s0,0,0,0c-1.82-1.83-3.56-3.76-5.21-5.77-1.46-1.79-2.85-3.64-4.16-5.55H11.96c2.2,4.35,4.7,8.52,7.48,12.47,3.27,4.65,6.94,9.02,10.96,13.06,9.18,9.23,20.14,16.66,32.31,21.73,11.72,4.88,24.58,7.57,38.07,7.57s26.35-2.7,38.06-7.57c12.17-5.07,23.13-12.5,32.31-21.73h0c1.49-1.5,2.96-3.07,4.39-4.7"/><path d="M175.54,132.93c1.43,1.41,2.8,2.83,4.08,4.26,2.24,2.5,4.28,4.81,5.93,7.26,1.32,1.96,2.4,4.02,3.15,6.35h-22.3c-1.31-1.64-2.7-3.23-4.16-4.76-1.67-1.75-3.41-3.41-5.21-4.96-7.33-6.32-16.09-11.41-25.84-14.89-9.38-3.35-19.65-5.2-30.41-5.2s-21.04,1.85-30.42,5.2c-9.75,3.48-18.51,8.58-25.84,14.89h0s0,0,0,0c-1.82,1.57-3.56,3.23-5.21,4.95-1.46,1.53-2.85,3.12-4.16,4.76H11.96c2.2-3.73,4.7-7.31,7.48-10.7,3.27-3.99,6.94-7.74,10.96-11.2,9.18-7.92,20.14-14.29,32.31-18.64,11.72-4.19,24.58-6.5,38.07-6.5s26.35,2.31,38.06,6.5c12.17,4.35,23.13,10.72,32.31,18.64h0c1.49,1.28,2.96,2.63,4.39,4.04"/></svg>
 </a>
 </div>
 </div>
@@ -319,6 +329,17 @@
    }
 </script>
 <script src="js/search.js"></script>
+<!-- Widget VLibras -->
+<div vw class="enabled">
+  <div vw-access-button class="active"></div>
+  <div vw-plugin-wrapper>
+    <div class="vw-plugin-top-wrapper"></div>
+  </div>
+</div>
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+<script>
+  new window.VLibras.Widget('https://vlibras.gov.br/app');
+</script>
 </body>
 </html>
 
