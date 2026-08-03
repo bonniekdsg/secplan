@@ -117,13 +117,49 @@
     border-radius: 0.5rem;
     padding: 1rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    max-width: 300px;
+    width: 210px;
+    max-width: 100%;
   }
   
-  .timeline-document img {
+  .timeline-document-link {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .timeline-document-link:focus-visible {
+    outline: 3px solid #8D2B2A;
+    outline-offset: 4px;
+    border-radius: 0.5rem;
+  }
+
+  .timeline-document-cover {
+    display: block;
     width: 100%;
-    height: auto;
+    height: 260px;
+    object-fit: contain;
+    object-position: center;
     border-radius: 0.25rem;
+    background: #f3f4f6;
+    transition: transform 0.3s ease;
+  }
+
+  .timeline-document-link:hover .timeline-document-cover {
+    transform: scale(1.02);
+  }
+
+  .timeline-document-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-top: 0.5rem;
+    color: #8D2B2A;
+    font-size: 0.8125rem;
+    font-weight: 700;
+  }
+
+  .timeline-document-action .material-symbols-outlined {
+    font-size: 1rem;
   }
   
   .timeline-document-title {
@@ -540,8 +576,14 @@
               <div class="timeline-content">
                 <div class="timeline-year">2024-2027</div>
                 <div class="timeline-document">
-                  <img src="https://via.placeholder.com/300x400/4A90E2/FFFFFF?text=REVISÃO+DO+PLANEJAMENTO+ESTRATÉGICO+2024-2027" alt="Revisão do Planejamento Estratégico 2024-2027"/>
-                  <div class="timeline-document-title">REVISÃO DO PLANEJAMENTO ESTRATÉGICO 2024-2027</div>
+                  <a href="assets/planejamento-estrategico/pe-2024-2027.pdf" class="timeline-document-link" target="_blank" rel="noopener noreferrer" aria-label="Abrir PDF da Revisão do Planejamento Estratégico 2024-2027">
+                    <img src="assets/planejamento-estrategico/pe-2024-2027.png" class="timeline-document-cover" alt="Capa do PDF da Revisão do Planejamento Estratégico 2024-2027" loading="lazy" decoding="async"/>
+                    <div class="timeline-document-title">REVISÃO DO PLANEJAMENTO ESTRATÉGICO 2024-2027</div>
+                    <span class="timeline-document-action">
+                      <span class="material-symbols-outlined" aria-hidden="true">open_in_new</span>
+                      Abrir PDF
+                    </span>
+                  </a>
                 </div>
               </div>
             </div>
@@ -552,8 +594,14 @@
               <div class="timeline-content">
                 <div class="timeline-year">2020-2029</div>
                 <div class="timeline-document">
-                  <img src="https://via.placeholder.com/300x400/808080/FFFFFF?text=PLANEJAMENTO+ESTRATÉGICO+2020-2029" alt="Planejamento Estratégico 2020-2029"/>
-                  <div class="timeline-document-title">PLANEJAMENTO ESTRATÉGICO 2020-2029</div>
+                  <a href="assets/planejamento-estrategico/pe-2020-2029.pdf" class="timeline-document-link" target="_blank" rel="noopener noreferrer" aria-label="Abrir PDF do Planejamento Estratégico 2020-2029">
+                    <img src="assets/planejamento-estrategico/pe-2020-2029.png" class="timeline-document-cover" alt="Capa do PDF do Planejamento Estratégico 2020-2029" loading="lazy" decoding="async"/>
+                    <div class="timeline-document-title">PLANEJAMENTO ESTRATÉGICO 2020-2029</div>
+                    <span class="timeline-document-action">
+                      <span class="material-symbols-outlined" aria-hidden="true">open_in_new</span>
+                      Abrir PDF
+                    </span>
+                  </a>
                 </div>
               </div>
             </div>
@@ -564,8 +612,14 @@
               <div class="timeline-content">
                 <div class="timeline-year">2016-2021</div>
                 <div class="timeline-document">
-                  <img src="https://via.placeholder.com/300x400/FFFFFF/8D2B2A?text=PLANEJAMENTO+ESTRATÉGICO+PLANO+PLURIANUAL+2016-2021" alt="Planejamento Estratégico Plano Plurianual 2016-2021"/>
-                  <div class="timeline-document-title">PLANEJAMENTO ESTRATÉGICO PLANO PLURIANUAL 2016-2021</div>
+                  <a href="assets/planejamento-estrategico/pe-2016-2021.pdf" class="timeline-document-link" target="_blank" rel="noopener noreferrer" aria-label="Abrir PDF do Planejamento Estratégico Plano Plurianual 2016-2021">
+                    <img src="assets/planejamento-estrategico/pe-2016-2021.png" class="timeline-document-cover" alt="Capa do PDF do Planejamento Estratégico Plano Plurianual 2016-2021" loading="lazy" decoding="async"/>
+                    <div class="timeline-document-title">PLANEJAMENTO ESTRATÉGICO PLANO PLURIANUAL 2016-2021</div>
+                    <span class="timeline-document-action">
+                      <span class="material-symbols-outlined" aria-hidden="true">open_in_new</span>
+                      Abrir PDF
+                    </span>
+                  </a>
                 </div>
               </div>
             </div>
@@ -576,8 +630,14 @@
               <div class="timeline-content">
                 <div class="timeline-year">2010-2015</div>
                 <div class="timeline-document">
-                  <img src="https://via.placeholder.com/300x400/2C2C2C/FF6B35?text=PLANEJAMENTO+ESTRATÉGICO+2010-2015" alt="Planejamento Estratégico 2010-2015"/>
-                  <div class="timeline-document-title">PLANEJAMENTO ESTRATÉGICO 2010-2015</div>
+                  <a href="assets/planejamento-estrategico/pe-2010-2015.pdf" class="timeline-document-link" target="_blank" rel="noopener noreferrer" aria-label="Abrir PDF do Planejamento Estratégico 2010-2015">
+                    <img src="assets/planejamento-estrategico/pe-2010-2015.png" class="timeline-document-cover" alt="Capa do PDF do Planejamento Estratégico 2010-2015" loading="lazy" decoding="async"/>
+                    <div class="timeline-document-title">PLANEJAMENTO ESTRATÉGICO 2010-2015</div>
+                    <span class="timeline-document-action">
+                      <span class="material-symbols-outlined" aria-hidden="true">open_in_new</span>
+                      Abrir PDF
+                    </span>
+                  </a>
                 </div>
               </div>
             </div>
@@ -822,4 +882,3 @@
 </script>
 </body>
 </html>
-
